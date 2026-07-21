@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>NYC DOT Live Camera Viewer</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --surface: #fcfcfb; --page: #f2f2ef; --text: #0b0b0b; --text-2: #52514e; --muted: #898781;
+    --border: rgba(11,11,11,0.12); --blue: #2a78d6; --good: #0ca30c;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --surface: #1a1a19; --page: #0d0d0d; --text: #ffffff; --text-2: #c3c2b7; --muted: #898781; --border: rgba(255,255,255,0.14); --blue: #3987e5; --good: #0ca30c; }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--page); color: var(--text);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    display: flex; justify-content: center; padding: 32px 16px;
+  }
+  .wrap { max-width: 720px; width: 100%; }
+  h1 { font-size: 20px; margin: 0 0 4px; }
+  .sub { color: var(--text-2); font-size: 13.5px; margin: 0 0 20px; line-height: 1.5; }
+  .controls { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 14px; }
+  select, button {
+    font-family: inherit; font-size: 13.5px; padding: 9px 14px; border-radius: 8px;
+    border: 1px solid var(--border); background: var(--surface); color: var(--text); cursor: pointer;
+  }
+  select { flex: 1; min-width: 220px; }
+  button.primary { background: var(--blue); color: #fff; border-color: var(--blue); font-weight: 600; }
+  button.primary:active { opacity: 0.85; }
+  label.auto { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--text-2); }
+  .frame {
+    position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--border);
+    background: #000; aspect-ratio: 16 / 9;
+  }
+  .frame img { width: 100%; height: 100%; object-fit: contain; display: block; background: #111; }
+  .badge {
+    position: absolute; top: 10px; left: 10px; display: flex; align-items: center; gap: 6px;
+    background: rgba(11,11,11,0.65); color: #fff; font-size: 11px; padding: 4px 9px 4px 7px; border-radius: 999px;
+  }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--good); }
+  .meta { display: flex; justify-content: space-between; margin-top: 10px; font-size: 12px; color: var(--muted); }
+  .footnote { margin-top: 22px; font-size: 12px; color: var(--muted); line-height: 1.6; }
+  .footnote code { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 1px 5px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>NYC DOT Live Camera Viewer</h1>
+  <p class="sub">Fetches the current frame directly from <code>webcams.nyctmc.org</code> — no key needed. This only works as a local file / real webpage, not inside a claude.ai artifact (that sandbox blocks external image loads).</p>
+
+  <div class="controls">
+    <select id="camSelect"></select>
+    <button class="primary" id="refreshBtn">↻ Refresh now</button>
+    <label class="auto"><input type="checkbox" id="autoToggle" /> Auto-refresh every 5s</label>
+  </div>
+
+  <div class="frame">
+    <div class="badge"><span class="dot"></span><span id="statusText">Loaded</span></div>
+    <img id="camImg" alt="NYC DOT traffic camera feed" />
+  </div>
+  <div class="meta">
+    <span id="camName"></span>
+    <span id="lastRefreshed"></span>
+  </div>
+
+  <p class="footnote">
+    Each refresh appends a cache-busting <code>?t=</code> query param so the browser doesn't just show you a cached copy — the image itself still comes straight from the DOT camera API each time. The true frame timestamp is burned into the image by the camera; "last refreshed" below is when <em>your browser</em> requested it.
+  </p>
+</div>
+
+<script>
+  var cameras = [{"id":"8cc75cbc-e050-4947-aee8-639f63fe4ca7","name":"Canal Street @ Chrystie Street","area":"Manhattan","url":"https://webcams.nyctmc.org/api/cameras/8cc75cbc-e050-4947-aee8-639f63fe4ca7/image"},{"id":"8afc5cd6-f735-47e8-bd57-6e6d3b81b442","name":"WBB-20 @ Above Bedford Ave ( Berry St )","area":"Manhattan","url":"https://webcams.nyctmc.org/api/cameras/8afc5cd6-f735-47e8-bd57-6e6d3b81b442/image"},{"id":"98fc3e41-66be-42d7-8f69-5cc76ae7226f","name":"BB - Manhattan hub - 156.103","area":"Manhattan","url":"https://webcams.nyctmc.org/api/cameras/98fc3e41-66be-42d7-8f69-5cc76ae7226f/image"},{"id":"0039e6bf-5244-4b4e-b7dc-d02056bbfdc9","name":"Atlantic Ave @ 111 St","area":"Brooklyn","url":"https://webcams.nyctmc.org/api/cameras/0039e6bf-5244-4b4e-b7dc-d02056bbfdc9/image"},{"id":"0472fa7a-acd7-4510-a9e7-61307d4057cd","name":"Bay Pkwy @ 78 St (Kings Hwy)","area":"Brooklyn","url":"https://webcams.nyctmc.org/api/cameras/0472fa7a-acd7-4510-a9e7-61307d4057cd/image"},{"id":"3576217a-82e8-4f2a-854f-3de97ef37362","name":"BQE  @ Pearl St","area":"Brooklyn","url":"https://webcams.nyctmc.org/api/cameras/3576217a-82e8-4f2a-854f-3de97ef37362/image"},{"id":"1b3248f9-f26e-4f36-943f-b7a7731595fb","name":"QBB @ Crescent St","area":"Queens","url":"https://webcams.nyctmc.org/api/cameras/1b3248f9-f26e-4f36-943f-b7a7731595fb/image"},{"id":"300e0508-3c7e-4ac5-8527-b75bcf8292b8","name":"Hillside Ave @ Little Neck Pkwy","area":"Queens","url":"https://webcams.nyctmc.org/api/cameras/300e0508-3c7e-4ac5-8527-b75bcf8292b8/image"},{"id":"ae1960ee-1f34-4774-88f5-b195b9c2a505","name":"C5-LIE-15-WB_at_Queens_Blvd-Ex19","area":"Queens","url":"https://webcams.nyctmc.org/api/cameras/ae1960ee-1f34-4774-88f5-b195b9c2a505/image"},{"id":"09afb231-ef10-470f-bf54-0f44fc2dc18f","name":"Pelham Shore Rd @ City Island Rd","area":"Bronx","url":"https://webcams.nyctmc.org/api/cameras/09afb231-ef10-470f-bf54-0f44fc2dc18f/image"},{"id":"b221fdc4-ca81-41ae-875e-bf0341377758","name":"C1-BRE-06_W - WB_at_CBX-Hutch_Int-EX6A","area":"Bronx","url":"https://webcams.nyctmc.org/api/cameras/b221fdc4-ca81-41ae-875e-bf0341377758/image"},{"id":"c145d543-b5f5-4dec-9bb8-7866eafdf054","name":"Exterior St @ 3 Ave","area":"Bronx","url":"https://webcams.nyctmc.org/api/cameras/c145d543-b5f5-4dec-9bb8-7866eafdf054/image"},{"id":"07f88e60-2b93-4bba-9784-8cac3c9b7f52","name":"C3-SIE-02-EB_at_WSE_Int-Ex3","area":"Staten Island","url":"https://webcams.nyctmc.org/api/cameras/07f88e60-2b93-4bba-9784-8cac3c9b7f52/image"},{"id":"0ff541bf-1be1-4bbf-88c5-3a570541e7d2","name":"Father Capodanno Blvd @ Sands LN","area":"Staten Island","url":"https://webcams.nyctmc.org/api/cameras/0ff541bf-1be1-4bbf-88c5-3a570541e7d2/image"},{"id":"171d87f4-033f-4769-ae00-7819baa8034e","name":"SIE @ Fingerboard Rd","area":"Staten Island","url":"https://webcams.nyctmc.org/api/cameras/171d87f4-033f-4769-ae00-7819baa8034e/image"}];
+
+  var select = document.getElementById('camSelect');
+  var img = document.getElementById('camImg');
+  var camName = document.getElementById('camName');
+  var lastRefreshed = document.getElementById('lastRefreshed');
+  var statusText = document.getElementById('statusText');
+  var refreshBtn = document.getElementById('refreshBtn');
+  var autoToggle = document.getElementById('autoToggle');
+  var autoTimer = null;
+
+  cameras.forEach(function (c, i) {
+    var opt = document.createElement('option');
+    opt.value = i;
+    opt.textContent = c.area + ' — ' + c.name;
+    select.appendChild(opt);
+  });
+
+  function currentCam() { return cameras[select.value]; }
+
+  function loadFrame() {
+    var cam = currentCam();
+    statusText.textContent = 'Loading…';
+    var bust = cam.url + '?t=' + Date.now();
+    var probe = new Image();
+    probe.onload = function () {
+      img.src = bust;
+      statusText.textContent = 'Loaded';
+      lastRefreshed.textContent = 'Browser fetched at ' + new Date().toLocaleTimeString();
+    };
+    probe.onerror = function () {
+      statusText.textContent = 'Camera offline / unreachable';
+      lastRefreshed.textContent = 'Attempted at ' + new Date().toLocaleTimeString();
+    };
+    probe.src = bust;
+    camName.textContent = cam.area + ' — ' + cam.name;
+  }
+
+  refreshBtn.addEventListener('click', loadFrame);
+  select.addEventListener('change', loadFrame);
+
+  autoToggle.addEventListener('change', function () {
+    if (autoToggle.checked) {
+      autoTimer = setInterval(loadFrame, 5000);
+    } else {
+      clearInterval(autoTimer);
+    }
+  });
+
+  loadFrame();
+</script>
+</body>
+</html>

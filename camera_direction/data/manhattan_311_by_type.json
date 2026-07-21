@@ -1,0 +1,458 @@
+﻿[
+    {
+        "type":  "Noise - Street/Sidewalk",
+        "count":  693
+    },
+    {
+        "type":  "Illegal Parking",
+        "count":  488
+    },
+    {
+        "type":  "Noise - Residential",
+        "count":  420
+    },
+    {
+        "type":  "Water System",
+        "count":  198
+    },
+    {
+        "type":  "UNSANITARY CONDITION",
+        "count":  193
+    },
+    {
+        "type":  "Encampment",
+        "count":  187
+    },
+    {
+        "type":  "Noise - Commercial",
+        "count":  171
+    },
+    {
+        "type":  "Traffic Signal Condition",
+        "count":  150
+    },
+    {
+        "type":  "WATER LEAK",
+        "count":  149
+    },
+    {
+        "type":  "Homeless Person Assistance",
+        "count":  146
+    },
+    {
+        "type":  "Noise - Vehicle",
+        "count":  105
+    },
+    {
+        "type":  "PAINT/PLASTER",
+        "count":  103
+    },
+    {
+        "type":  "HEAT/HOT WATER",
+        "count":  93
+    },
+    {
+        "type":  "PLUMBING",
+        "count":  88
+    },
+    {
+        "type":  "Noise",
+        "count":  88
+    },
+    {
+        "type":  "Vendor Enforcement",
+        "count":  80
+    },
+    {
+        "type":  "Street Condition",
+        "count":  79
+    },
+    {
+        "type":  "DOOR/WINDOW",
+        "count":  73
+    },
+    {
+        "type":  "ELECTRIC",
+        "count":  69
+    },
+    {
+        "type":  "Dirty Condition",
+        "count":  68
+    },
+    {
+        "type":  "GENERAL",
+        "count":  65
+    },
+    {
+        "type":  "Sewer",
+        "count":  58
+    },
+    {
+        "type":  "Maintenance or Facility",
+        "count":  57
+    },
+    {
+        "type":  "FLOORING/STAIRS",
+        "count":  54
+    },
+    {
+        "type":  "Lost Property",
+        "count":  48
+    },
+    {
+        "type":  "Elevator",
+        "count":  46
+    },
+    {
+        "type":  "Violation of Park Rules",
+        "count":  46
+    },
+    {
+        "type":  "Food Establishment",
+        "count":  44
+    },
+    {
+        "type":  "Non-Emergency Police Matter",
+        "count":  44
+    },
+    {
+        "type":  "For Hire Vehicle Complaint",
+        "count":  39
+    },
+    {
+        "type":  "Blocked Driveway",
+        "count":  38
+    },
+    {
+        "type":  "Illegal Fireworks",
+        "count":  37
+    },
+    {
+        "type":  "Missed Collection",
+        "count":  34
+    },
+    {
+        "type":  "Consumer Complaint",
+        "count":  33
+    },
+    {
+        "type":  "APPLIANCE",
+        "count":  32
+    },
+    {
+        "type":  "Air Quality",
+        "count":  31
+    },
+    {
+        "type":  "Taxi Complaint",
+        "count":  29
+    },
+    {
+        "type":  "Rodent",
+        "count":  29
+    },
+    {
+        "type":  "General Construction/Plumbing",
+        "count":  27
+    },
+    {
+        "type":  "Illegal Dumping",
+        "count":  27
+    },
+    {
+        "type":  "Outdoor Dining",
+        "count":  26
+    },
+    {
+        "type":  "Lead",
+        "count":  26
+    },
+    {
+        "type":  "Panhandling",
+        "count":  23
+    },
+    {
+        "type":  "Street Light Condition",
+        "count":  23
+    },
+    {
+        "type":  "Noise - Park",
+        "count":  23
+    },
+    {
+        "type":  "Damaged Tree",
+        "count":  20
+    },
+    {
+        "type":  "Animal-Abuse",
+        "count":  20
+    },
+    {
+        "type":  "Graffiti",
+        "count":  20
+    },
+    {
+        "type":  "SAFETY",
+        "count":  19
+    },
+    {
+        "type":  "Obstruction",
+        "count":  18
+    },
+    {
+        "type":  "Sidewalk Condition",
+        "count":  18
+    },
+    {
+        "type":  "Drug Activity",
+        "count":  18
+    },
+    {
+        "type":  "Indoor Air Quality",
+        "count":  16
+    },
+    {
+        "type":  "Animal in a Park",
+        "count":  15
+    },
+    {
+        "type":  "Dead/Dying Tree",
+        "count":  14
+    },
+    {
+        "type":  "Abandoned Vehicle",
+        "count":  13
+    },
+    {
+        "type":  "Drinking",
+        "count":  12
+    },
+    {
+        "type":  "Traffic",
+        "count":  12
+    },
+    {
+        "type":  "Residential Disposal Complaint",
+        "count":  11
+    },
+    {
+        "type":  "Building/Use",
+        "count":  10
+    },
+    {
+        "type":  "Dead Animal",
+        "count":  10
+    },
+    {
+        "type":  "Curb Condition",
+        "count":  9
+    },
+    {
+        "type":  "Emergency Response Team (ERT)",
+        "count":  9
+    },
+    {
+        "type":  "Abandoned Bike",
+        "count":  9
+    },
+    {
+        "type":  "Noise - Helicopter",
+        "count":  8
+    },
+    {
+        "type":  "Litter Basket Request",
+        "count":  7
+    },
+    {
+        "type":  "Smoking or Vaping",
+        "count":  7
+    },
+    {
+        "type":  "Real Time Enforcement",
+        "count":  6
+    },
+    {
+        "type":  "Unsanitary Pigeon Condition",
+        "count":  6
+    },
+    {
+        "type":  "Broken Parking Meter",
+        "count":  5
+    },
+    {
+        "type":  "Special Projects Inspection Team (SPIT)",
+        "count":  5
+    },
+    {
+        "type":  "Cannabis Retailer",
+        "count":  5
+    },
+    {
+        "type":  "Mobile Food Vendor",
+        "count":  5
+    },
+    {
+        "type":  "Asbestos",
+        "count":  5
+    },
+    {
+        "type":  "Food Poisoning",
+        "count":  5
+    },
+    {
+        "type":  "Litter Basket Complaint",
+        "count":  5
+    },
+    {
+        "type":  "Illegal Tree Damage",
+        "count":  5
+    },
+    {
+        "type":  "Derelict Vehicles",
+        "count":  4
+    },
+    {
+        "type":  "Street Sign - Dangling",
+        "count":  4
+    },
+    {
+        "type":  "Bike Rack",
+        "count":  4
+    },
+    {
+        "type":  "Dumpster Complaint",
+        "count":  4
+    },
+    {
+        "type":  "Water Conservation",
+        "count":  4
+    },
+    {
+        "type":  "Root/Sewer/Sidewalk Condition",
+        "count":  3
+    },
+    {
+        "type":  "Construction Lead Dust",
+        "count":  3
+    },
+    {
+        "type":  "Commercial Disposal Complaint",
+        "count":  3
+    },
+    {
+        "type":  "Taxi Report",
+        "count":  3
+    },
+    {
+        "type":  "Institution Disposal Complaint",
+        "count":  2
+    },
+    {
+        "type":  "For Hire Vehicle Report",
+        "count":  2
+    },
+    {
+        "type":  "OUTSIDE BUILDING",
+        "count":  2
+    },
+    {
+        "type":  "Urinating in Public",
+        "count":  2
+    },
+    {
+        "type":  "Overgrown Tree/Branches",
+        "count":  2
+    },
+    {
+        "type":  "Street Sweeping Complaint",
+        "count":  2
+    },
+    {
+        "type":  "Hazardous Materials",
+        "count":  2
+    },
+    {
+        "type":  "Illegal Posting",
+        "count":  2
+    },
+    {
+        "type":  "Street Sign - Missing",
+        "count":  2
+    },
+    {
+        "type":  "Lot Condition",
+        "count":  2
+    },
+    {
+        "type":  "Highway Condition",
+        "count":  2
+    },
+    {
+        "type":  "Unleashed Dog",
+        "count":  2
+    },
+    {
+        "type":  "Street Sign - Damaged",
+        "count":  2
+    },
+    {
+        "type":  "Illegal Animal Sold",
+        "count":  1
+    },
+    {
+        "type":  "Mosquitoes",
+        "count":  1
+    },
+    {
+        "type":  "Mold",
+        "count":  1
+    },
+    {
+        "type":  "BEST/Site Safety",
+        "count":  1
+    },
+    {
+        "type":  "Cooling Tower",
+        "count":  1
+    },
+    {
+        "type":  "Found Property",
+        "count":  1
+    },
+    {
+        "type":  "Electrical",
+        "count":  1
+    },
+    {
+        "type":  "Noise - House of Worship",
+        "count":  1
+    },
+    {
+        "type":  "Recycling Basket Complaint",
+        "count":  1
+    },
+    {
+        "type":  "Radioactive Material",
+        "count":  1
+    },
+    {
+        "type":  "Water Quality",
+        "count":  1
+    },
+    {
+        "type":  "LinkNYC",
+        "count":  1
+    },
+    {
+        "type":  "Beach/Pool/Sauna Complaint",
+        "count":  1
+    },
+    {
+        "type":  "Unsanitary Animal Pvt Property",
+        "count":  1
+    },
+    {
+        "type":  "New Tree Request",
+        "count":  1
+    }
+]

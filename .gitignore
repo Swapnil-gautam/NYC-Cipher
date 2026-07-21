@@ -1,0 +1,18 @@
+# Secrets
+.env
+
+# Images — regenerable from scripts, ~33MB, not worth versioning
+camera_direction/images/
+camera_direction/results/composites/
+camera_direction/results/composites_full/
+camera_direction/results/composites_vith16plus/
+
+# Python / model caches
+__pycache__/
+*.pyc
+.cache/
+
+# OS junk
+Thumbs.db
+Desktop.ini
+.DS_Store

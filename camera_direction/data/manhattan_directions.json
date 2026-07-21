@@ -1,0 +1,2240 @@
+﻿[
+    {
+        "id":  "8cc75cbc-e050-4947-aee8-639f63fe4ca7",
+        "name":  "Canal Street @ Chrystie Street",
+        "direction":  "W",
+        "ocrText":  "Facing *\u0027est Mon Ju"
+    },
+    {
+        "id":  "8afc5cd6-f735-47e8-bd57-6e6d3b81b442",
+        "name":  "WBB-20 @ Above Bedford Ave ( Berry St )",
+        "direction":  null,
+        "ocrText":  "MonJul 20"
+    },
+    {
+        "id":  "98fc3e41-66be-42d7-8f69-5cc76ae7226f",
+        "name":  "BB - Manhattan hub - 156.103",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "ec1e7b42-18de-4475-8c89-9e80f21e5b6c",
+        "name":  "FDR Drive @ 122 St",
+        "direction":  null,
+        "ocrText":  "2026-07-20 16:2"
+    },
+    {
+        "id":  "ec9eda79-e250-4e6f-a8f6-e51021fb054f",
+        "name":  "Amsterdam Ave @ 60 St",
+        "direction":  null,
+        "ocrText":  "2026-07-20 04:23:"
+    },
+    {
+        "id":  "4f8c2e84-c15a-4474-91fb-7e14554d4c4e",
+        "name":  "Central Park West @ 65 St",
+        "direction":  null,
+        "ocrText":  "Mon Jul 20 2026 04:2"
+    },
+    {
+        "id":  "332f161d-47cb-4c8a-b6b6-5ad48a55c978",
+        "name":  "Ave of Americas @ Central Park South",
+        "direction":  null,
+        "ocrText":  ".o_7L20"
+    },
+    {
+        "id":  "ad3df063-d5d6-458c-84e7-1242060649cf",
+        "name":  "Ft Washington @ 179 St",
+        "direction":  null,
+        "ocrText":  "Mon Jul 20"
+    },
+    {
+        "id":  "984ebbad-ca64-41d8-8008-63aaae316952",
+        "name":  "Central Park West @ 72 St",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "0ccf3a51-8981-4e03-92a9-00b1c59f0b9b",
+        "name":  "BB-24 South Rdwy @ Above South St",
+        "direction":  null,
+        "ocrText":  ""
+    },
+    {
+        "id":  "053e8995-f8cb-4d02-a659-70ac7c7da5db",
+        "name":  "Broadway @ 45 St",
+        "direction":  "N",
+        "ocrText":  "Facing North 07/20/2i"
+    },
+    {
+        "id":  "9cc8495e-aeee-4759-adba-5a6bf5efd4b9",
+        "name":  "3 Ave @ 23 St",
+        "direction":  "W",
+        "ocrText":  "Facing West 07/20/ ,"
+    },
+    {
+        "id":  "975c7dd6-d6d7-4eaa-843d-fbe8eb7a1eb3",
+        "name":  "QBB UL CM @ York Ave",
+        "direction":  null,
+        "ocrText":  "Mon Jul 20 2026 04:2:"
+    },
+    {
+        "id":  "b1d5d592-9e36-478e-bedc-5fb02d836bc3",
+        "name":  "Sutton Pl @ 58 St",
+        "direction":  null,
+        "ocrText":  "2026-07-20 0"
+    },
+    {
+        "id":  "09b1235e-d2d1-4451-83a5-5a1c3ec280aa",
+        "name":  "St Nicholas Ave @ 145 St",
+        "direction":  null,
+        "ocrText":  ""
+    },
+    {
+        "id":  "1572a83a-0a4f-4a7b-84a0-fec0890a2de3",
+        "name":  "C4-WST-03-Med_at_Vestry_St",
+        "direction":  null,
+        "ocrText":  ""
+    },
+    {
+        "id":  "ec9ffb62-e3bf-4352-8bcf-7c9adf5fbe9c",
+        "name":  "8th Ave @ 31st St",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "155b2bff-5dd2-4109-bd10-e098376c8476",
+        "name":  "FDR Dr @ 96 Street",
+        "direction":  "W",
+        "ocrText":  "Facin West Mon Ju"
+    },
+    {
+        "id":  "34674be5-4791-47f1-b0b2-2db0ff619732",
+        "name":  "6 Ave @ 39 St",
+        "direction":  null,
+        "ocrText":  "2026-07-20 16:23"
+    },
+    {
+        "id":  "9b648eba-3e4a-4c2c-9afc-e659c1083804",
+        "name":  "MHB-19 Manh N URDW @ Anch",
+        "direction":  null,
+        "ocrText":  "MonJul 20"
+    },
+    {
+        "id":  "f06979b2-3497-4330-9882-a06c8a442b7c",
+        "name":  "6 Ave @ 34 St",
+        "direction":  "S",
+        "ocrText":  "Facing South 07/20."
+    },
+    {
+        "id":  "3095997f-dd41-4e71-a810-9290576c17a6",
+        "name":  "12 Ave @ 57 St",
+        "direction":  null,
+        "ocrText":  "Mon Jul 20 2026 04:2"
+    },
+    {
+        "id":  "6847c104-0117-4e3f-b30e-e1a859bc8107",
+        "name":  "FDR Dr @ 101 St ",
+        "direction":  null,
+        "ocrText":  "2026-07-20 16:23"
+    },
+    {
+        "id":  "23bcc0dd-d395-45fe-8106-676ba7293208",
+        "name":  "Varick St @ Watt St",
+        "direction":  null,
+        "ocrText":  "2026-07-20 04•.24:!"
+    },
+    {
+        "id":  "e229e0fd-559b-4c1e-bcba-ac23db1d01e3",
+        "name":  "6 Ave @ 57 St",
+        "direction":  "S",
+        "ocrText":  "Facin South Mon JI"
+    },
+    {
+        "id":  "6d3a21dd-0434-4d92-a0d1-3ca8b77297db",
+        "name":  "5 Ave @ E 58 St",
+        "direction":  null,
+        "ocrText":  ""
+    },
+    {
+        "id":  "08328372-55a2-448a-b180-9b4bce0b8d9e",
+        "name":  "Broadway @ Morris St",
+        "direction":  null,
+        "ocrText":  "2026-07-20 16"
+    },
+    {
+        "id":  "41397b64-d035-4b41-a03e-170fe4103d89",
+        "name":  "Park Ave @ 79 St",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "9c4c2657-6796-4953-bbe6-c50f24bb5820",
+        "name":  "5 Ave @ 57 St",
+        "direction":  "S",
+        "ocrText":  "Facing South Mon"
+    },
+    {
+        "id":  "ecba28cb-ac70-4d25-abcb-6506111ea120",
+        "name":  "FDR Dr @ Brooklyn Bridge ",
+        "direction":  null,
+        "ocrText":  "Mon Jul 20 2026 04:2:"
+    },
+    {
+        "id":  "5d055599-875a-4010-991f-e7e454889052",
+        "name":  "7 Ave @ 40 St",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "9b923606-16ba-45ad-a105-aabcc98ef1fa",
+        "name":  "12 Ave @ 22 St",
+        "direction":  null,
+        "ocrText":  "Mon Jul 20 2026 04:2:"
+    },
+    {
+        "id":  "20b2298a-90cf-463f-b172-0b398a34f061",
+        "name":  "Park Ave @ 37 St",
+        "direction":  null,
+        "ocrText":  "2026-07-20 16:23:"
+    },
+    {
+        "id":  "83655dbc-7902-4fdb-926c-15fee4396b83",
+        "name":  "Broadway @ 38 St",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "f581cdc7-684b-4309-8c12-34b0bacd72bf",
+        "name":  "3 Ave @ E 125 St",
+        "direction":  null,
+        "ocrText":  "2026-07-20 04:23:"
+    },
+    {
+        "id":  "9d86d84c-6d3a-45a6-a8ad-fb5ab52f2b52",
+        "name":  "E 57 St @ QBB",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "152e384f-7d80-4240-8995-bd75b78b582f",
+        "name":  "2 Ave @ E 128 Street",
+        "direction":  null,
+        "ocrText":  "2026-07-20 04:23:"
+    },
+    {
+        "id":  "91567cf3-e527-4bb7-a6a6-e95656af5ca8",
+        "name":  "1 Ave @ E 120 Street ",
+        "direction":  null,
+        "ocrText":  "2026-07-20 04:23:"
+    },
+    {
+        "id":  "5adef8a1-5ad0-4a73-8d87-e1e545ba8cbb",
+        "name":  "FDR Dr @ 73 St",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "9c6dae83-0258-489e-a9cd-83396cf8dad7",
+        "name":  "Lexington Ave @ E 128 Street",
+        "direction":  null,
+        "ocrText":  "2026-07-20 04:23:"
+    },
+    {
+        "id":  "1e60ade7-c760-48cf-acd9-d9d6cbfa9420",
+        "name":  "7 Ave @ 32 St",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "330e2a88-3cea-4ce5-b1a2-ae8440de9b1a",
+        "name":  "1 Ave @ 84 St",
+        "direction":  null,
+        "ocrText":  ""
+    },
+    {
+        "id":  "156b0613-239a-4e77-aa0e-0a4becfc0b05",
+        "name":  "Lenox Ave @ 125 St",
+        "direction":  "W",
+        "ocrText":  "Facin West Mon Ju"
+    },
+    {
+        "id":  "0dc7c2b4-614d-46a3-9610-3ba09f3f1284",
+        "name":  "6 Ave @ 30 St",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "6728d273-d20b-44b7-868a-d54c00e50fab",
+        "name":  "Amsterdam @ 178 St",
+        "direction":  "W",
+        "ocrText":  "[Facing West Mo"
+    },
+    {
+        "id":  "0cef143f-b3d8-4066-84ee-6114fa6e76e0",
+        "name":  "Lexington Ave @ E 110 Street",
+        "direction":  null,
+        "ocrText":  "2026-07-20 04:23:"
+    },
+    {
+        "id":  "07b8616e-373e-4ec9-89cc-11cad7d59fcb",
+        "name":  "Worth St @ Centre St",
+        "direction":  "W",
+        "ocrText":  "Facing West Mon Jul 20"
+    },
+    {
+        "id":  "a6bd09c7-9195-4e0b-ac0f-78114a7d63a1",
+        "name":  "Park Ave @ E 125 St",
+        "direction":  null,
+        "ocrText":  "2026-07-20 04:23:"
+    },
+    {
+        "id":  "04e09ed5-2d97-4e29-8438-b87748850dbb",
+        "name":  "Columbus Ave @ 65 St",
+        "direction":  null,
+        "ocrText":  "Facing % lort"
+    },
+    {
+        "id":  "06ea08ec-5cd8-4bd6-9535-502acf651abc",
+        "name":  "5 Ave @ 86 St",
+        "direction":  null,
+        "ocrText":  "07/20/2026"
+    },
+    {
+        "id":  "175cc1f1-0543-41c9-85fb-464ec29687de",
+        "name":  "Park Ave @ E 116 Street",
+        "direction":  null,
+        "ocrText":  "2026-07-20 04:23:"
+    },
+    {
+        "id":  "04ffc69c-92a7-4c02-aa18-2b16e7ba81f2",
+        "name":  "FDR Dr @ 36 St",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "1fe143ba-7133-422f-b594-d6712559c523",
+        "name":  "2 Ave @ 125 St",
+        "direction":  "S",
+        "ocrText":  "Facing South Mon Jul"
+    },
+    {
+        "id":  "5caa3ace-277b-42db-97bd-585f29b0d49f",
+        "name":  "Central Park West @ W 61 St",
+        "direction":  null,
+        "ocrText":  ".o_7L20"
+    },
+    {
+        "id":  "5ce5f31b-fce3-4f60-9534-5986c8b668eb",
+        "name":  "3 Ave @ E 120 Street",
+        "direction":  null,
+        "ocrText":  "2026-07-20 04:23:"
+    },
+    {
+        "id":  "36672d97-80d3-48f0-b3c4-6e6125069b90",
+        "name":  "Riverside Dr @ 79 St",
+        "direction":  null,
+        "ocrText":  "07/20/2026"
+    },
+    {
+        "id":  "ae2f7e1a-e781-4d24-9434-12f4f4ef4f2b",
+        "name":  "WBB -17  SOR - 2  @ Delancey St/FDR",
+        "direction":  "S",
+        "ocrText":  "Facin South"
+    },
+    {
+        "id":  "17b6c7dd-2aa7-442a-8832-d39051a47d1b",
+        "name":  "Park Ave @ 34 St",
+        "direction":  null,
+        "ocrText":  "07/20/2026"
+    },
+    {
+        "id":  "3ad126cc-3f99-4626-a229-b9ba4d3f4b63",
+        "name":  "St Nicholas Ave @ 181 St",
+        "direction":  null,
+        "ocrText":  "Mon Jul 20 2026 04:2:"
+    },
+    {
+        "id":  "927f8797-4a7e-4b6d-b11f-cee68a027dc9",
+        "name":  "2 Ave @ E 102 St",
+        "direction":  null,
+        "ocrText":  "2026-07-20 04:23:"
+    },
+    {
+        "id":  "09d9335c-097e-47ef-af1d-122eb3206f7c",
+        "name":  "Rockefeller Plaza @ W 49 St",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "a9fb8f19-98a1-4b2b-a920-a3537cc4908f",
+        "name":  "Lexington Ave @ E 120 St",
+        "direction":  null,
+        "ocrText":  "2026-07-20 04:23:"
+    },
+    {
+        "id":  "301002c0-fe39-4fad-998a-fdc66e531b1d",
+        "name":  "Lincoln Tun Approach(Bet 9Ave \u0026 10Ave) @ W31 ST ",
+        "direction":  null,
+        "ocrText":  ".o_7L20"
+    },
+    {
+        "id":  "af741eca-a192-41be-890a-22c7ae7d159a",
+        "name":  "WBB-10 NIR-4 @ FDR RD",
+        "direction":  "E",
+        "ocrText":  "Factng East"
+    },
+    {
+        "id":  "3809d95f-f99e-4eca-9121-9c7db73f8cbd",
+        "name":  "12 Ave @ 34 St",
+        "direction":  null,
+        "ocrText":  "Mon Jul 20 2026 04:2"
+    },
+    {
+        "id":  "08ad39a9-300a-47f7-a708-2670843e6add",
+        "name":  "2 Ave @ E 116 St",
+        "direction":  null,
+        "ocrText":  "2026-07-20 04:23:"
+    },
+    {
+        "id":  "b062d611-e0e8-40be-a180-c583391276f5",
+        "name":  "Park Ave @ 72 St",
+        "direction":  "E",
+        "ocrText":  "Facing East Mon"
+    },
+    {
+        "id":  "24101bcf-29a7-4417-b77d-1f0368dc212d",
+        "name":  "Hudson St @ Laight St",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "65440c6b-ee6c-4406-8542-2992b6edf3f5",
+        "name":  "Lexington Ave @ 72 St",
+        "direction":  "S",
+        "ocrText":  "Facin South Mon JI"
+    },
+    {
+        "id":  "5c505897-b475-4359-897d-b064bdb9feef",
+        "name":  "8 AVE @ 44 St",
+        "direction":  null,
+        "ocrText":  "Mon Jul 20 2026"
+    },
+    {
+        "id":  "f7c4d5d5-f4d4-4590-9459-6491507ae9f9",
+        "name":  "1 Ave @ 59 St",
+        "direction":  "W",
+        "ocrText":  "Facing West 07/20/ ,"
+    },
+    {
+        "id":  "9cdf1f47-307d-48e8-8627-e77e189b5fed",
+        "name":  "207 ST @ 9 Ave",
+        "direction":  "E",
+        "ocrText":  "Facin$East"
+    },
+    {
+        "id":  "56b99f9c-1f5c-47e2-8c85-d34de045a4ce",
+        "name":  "Varick St @ Beach St ",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "8c1ea3b6-0db6-4222-ba50-2545f8f82d71",
+        "name":  "Hudson St @ Erickson Pl/Beach",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "06d36cfe-a331-4cfd-8ff1-84e4d711e418",
+        "name":  "E 63 St @ QBB",
+        "direction":  "S",
+        "ocrText":  "Facing South Mon Jul"
+    },
+    {
+        "id":  "1927b469-e2dc-4943-a70c-e6e52fd4c48c",
+        "name":  "Broadway @ 46 St- Quad South",
+        "direction":  null,
+        "ocrText":  "Tyton Jul"
+    },
+    {
+        "id":  "4bd443cf-374f-493b-a99e-5f7ef81bb62c",
+        "name":  "3 Ave @ E 88 St",
+        "direction":  "S",
+        "ocrText":  "Facing South Mon Jul"
+    },
+    {
+        "id":  "1f0cfaad-4c0a-46e8-a5e3-f206d83a875d",
+        "name":  "Delancy St @ Essex St",
+        "direction":  "E",
+        "ocrText":  "Facing East Mon Ju"
+    },
+    {
+        "id":  "18afd744-f7ce-41c2-98d1-93e87929f627",
+        "name":  "2 Ave @ E 110 Street",
+        "direction":  null,
+        "ocrText":  "2026-07-20 04:23:"
+    },
+    {
+        "id":  "1dddf912-4718-4b2a-94dd-1f793a9ed22c",
+        "name":  "6 Ave @ 49 St",
+        "direction":  null,
+        "ocrText":  "07/20/2026 P"
+    },
+    {
+        "id":  "3a3cf44d-6c42-46fb-b774-1441a8582076",
+        "name":  "Canal St @ Hudson St",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "0a49d947-2a5b-498d-a386-2cef5ce883fa",
+        "name":  "50 St Btwn 8 Ave \u0026 Broadway",
+        "direction":  "N",
+        "ocrText":  "Facing North Mon"
+    },
+    {
+        "id":  "23994d9e-7e59-4808-8d47-405f779d19cf",
+        "name":  "1 Ave @ 14 St",
+        "direction":  "E",
+        "ocrText":  "Facin East Mon Ju"
+    },
+    {
+        "id":  "dce301aa-b937-4041-b9fc-960abcd79178",
+        "name":  "Varick St @ Laight St",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "2be7f4d2-3a72-45ba-95ad-b526643ef248",
+        "name":  "West Street @ Intrepid",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "0f12dfd0-76dc-4b34-80ee-b10ceeb84058",
+        "name":  "2nd Camera South Bound BPU-148.57",
+        "direction":  null,
+        "ocrText":  "07/20/26"
+    },
+    {
+        "id":  "b6ce5739-ca1f-4a8d-bfd7-5979d6ff6dfc",
+        "name":  "2nd Camera North Bound BPU -148.52",
+        "direction":  "S",
+        "ocrText":  "Facing South 07/20."
+    },
+    {
+        "id":  "e38fd7b8-c074-4b6e-bc52-4dd932145239",
+        "name":  "Rockefeller Plaza @ W 50 St",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "311a7ce2-4648-45f7-8b69-32709361adb7",
+        "name":  "1 Ave @ 96 St",
+        "direction":  "N",
+        "ocrText":  "Facing North Mon"
+    },
+    {
+        "id":  "04589f46-2429-4e26-ad46-12a1198e9a9c",
+        "name":  "6 Ave @ West Houston St",
+        "direction":  "E",
+        "ocrText":  "Facin East 2026-0\u0027"
+    },
+    {
+        "id":  "98c2de4e-fa0c-41d0-b1ea-6d1df833d792",
+        "name":  "Allan St (1 Ave) @ Houston St (B)",
+        "direction":  null,
+        "ocrText":  "07/20/26"
+    },
+    {
+        "id":  "fcc24aa5-4da0-48f2-aa43-e70e4677517c",
+        "name":  "6 Ave @ 23 St",
+        "direction":  "W",
+        "ocrText":  "Facing West Mon Ju"
+    },
+    {
+        "id":  "38c07664-0329-471e-997f-6a9015a5bcef",
+        "name":  "1 Ave @ 124 St",
+        "direction":  "N",
+        "ocrText":  "Facing North Mon"
+    },
+    {
+        "id":  "482e6d35-2a67-4bbf-b36f-fdf7e031d607",
+        "name":  "5 AVE @ 50 St",
+        "direction":  null,
+        "ocrText":  "07/20/2026"
+    },
+    {
+        "id":  "5674d0ea-703a-43c3-bea7-2b372d1eb00b",
+        "name":  "2 Ave @ 72 St",
+        "direction":  "S",
+        "ocrText":  "Facin South Mon"
+    },
+    {
+        "id":  "10c5f42d-6b32-4533-9c35-5715af4e4c76",
+        "name":  "3 Ave @ E 86 St",
+        "direction":  "N",
+        "ocrText":  "Facin North Mon JI"
+    },
+    {
+        "id":  "5c4582a7-6492-41ac-9bac-fa872878117b",
+        "name":  "West st and Fulton",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "67a4769b-dfb2-4a0d-9605-114df107646c",
+        "name":  "West St @ West Houston St",
+        "direction":  null,
+        "ocrText":  "cing Sou"
+    },
+    {
+        "id":  "3c39ff3e-a81c-4f92-9a96-7861aa244fda",
+        "name":  "BB-43 North Rdwy @ Center Expansion Jt",
+        "direction":  null,
+        "ocrText":  "Mon Jul 20 2026"
+    },
+    {
+        "id":  "214340ac-8243-4820-b924-f36caff361e2",
+        "name":  "2 Ave @ 36 St-Midtown Tunnel",
+        "direction":  "S",
+        "ocrText":  "Facing South.Mon Jul"
+    },
+    {
+        "id":  "4d39d6d1-a009-480f-9851-2571a5df1174",
+        "name":  "Amsterdam Ave @ 181 St",
+        "direction":  null,
+        "ocrText":  "Facing es Mon ul"
+    },
+    {
+        "id":  "097a7d75-1c6f-4817-aa34-1de4bb9202f4",
+        "name":  "MHB-23 Manh LRDWY @ Twr",
+        "direction":  "W",
+        "ocrText":  "Facing West Mon"
+    },
+    {
+        "id":  "25ad72fe-e74c-49af-b4c0-34c9eac14655",
+        "name":  "Canal St @ Greenwich St ( Holland Tunnel )",
+        "direction":  "N",
+        "ocrText":  "Facin North Mon JI"
+    },
+    {
+        "id":  "1e627100-9bce-4e78-bcd3-736344a2236c",
+        "name":  "FDR Dr @ Brooklyn Bridge Exit NB",
+        "direction":  "W",
+        "ocrText":  "Facing West Mon Jul"
+    },
+    {
+        "id":  "6316453d-6161-4b98-a8e7-0e36c69d267c",
+        "name":  "2 Ave @ 74 St",
+        "direction":  "S",
+        "ocrText":  "Facing South"
+    },
+    {
+        "id":  "98b37dd5-bd64-4ace-add0-37f5135df600",
+        "name":  "St Nicholas Ave @ 125 St",
+        "direction":  "N",
+        "ocrText":  "Facing North 2026-1"
+    },
+    {
+        "id":  "86d418ab-10bc-4b73-a283-153abffabb0f",
+        "name":  "West st and West Thames (Battery tunnel)",
+        "direction":  "E",
+        "ocrText":  "Facin East Mon Ju"
+    },
+    {
+        "id":  "421960d6-54a8-4f12-a5ee-7a07390def4c",
+        "name":  "MADISON @ 57 ST",
+        "direction":  null,
+        "ocrText":  "Mon Jul 20 2026 04:2"
+    },
+    {
+        "id":  "61890a52-c90e-41a1-b032-d5c6f39746d9",
+        "name":  "7 Ave @ 145 St",
+        "direction":  "S",
+        "ocrText":  "Facing South Mo"
+    },
+    {
+        "id":  "37e2a4b6-2fbd-42f5-9d2d-130b664783f2",
+        "name":  "9 Ave @ 57 St",
+        "direction":  "S",
+        "ocrText":  "Facing South Mon Jul"
+    },
+    {
+        "id":  "957fc40e-675c-4121-a3bc-ca3c0a246831",
+        "name":  "10 Ave @ 49 St",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "5beee073-18a8-4349-af6b-75eff7a78371",
+        "name":  "Church Street @ Vesey",
+        "direction":  "N",
+        "ocrText":  "Facing North 07/20/2i"
+    },
+    {
+        "id":  "8ee72946-49e0-4f49-991d-4f52b1206ed7",
+        "name":  "Broadway @ 6 Ave / 33 St",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "8f692f55-8118-423b-8bcb-1ea49eaf442b",
+        "name":  "2 Ave @ 42 St",
+        "direction":  "W",
+        "ocrText":  "Facing West Mon"
+    },
+    {
+        "id":  "9dbb3101-9918-4b61-946f-a34d7c7c662b",
+        "name":  "East Houston St @ Ave B",
+        "direction":  null,
+        "ocrText":  "Mon Jul 20 2026 04:2:"
+    },
+    {
+        "id":  "6a85384f-d82e-4bff-b5f1-15c22cca70e6",
+        "name":  "8th Ave @ 33rd St",
+        "direction":  null,
+        "ocrText":  "07/20/2026 03:23"
+    },
+    {
+        "id":  "db5f8b82-99b1-45f3-a520-7d1f91d0a49a",
+        "name":  "1 Ave @ E 14 St",
+        "direction":  "N",
+        "ocrText":  "FaqinæNorth Mon"
+    },
+    {
+        "id":  "0267c1e2-6eaf-49d4-a063-df89e9242993",
+        "name":  "FDR Dr @ 79 St",
+        "direction":  null,
+        "ocrText":  "07/20/2026 P"
+    },
+    {
+        "id":  "9bd74b87-32d1-4767-8081-86a2e83f28f2",
+        "name":  "12 Ave @ 42 St",
+        "direction":  "E",
+        "ocrText":  "Facing East Mon Jl."
+    },
+    {
+        "id":  "5ed9017b-c053-4c5e-b858-752516683ada",
+        "name":  "Dyer Ave @ W 36 St",
+        "direction":  null,
+        "ocrText":  ""
+    },
+    {
+        "id":  "a409e9bd-6a0f-4cdc-81d8-290d5709dc74",
+        "name":  "FDR @ 38 St",
+        "direction":  null,
+        "ocrText":  "07/20/26"
+    },
+    {
+        "id":  "0ff11926-fcf0-4e3b-8aea-ffc0ea4f2228",
+        "name":  "West Houston @ Hudson St",
+        "direction":  null,
+        "ocrText":  "\u0027sty• Morc"
+    },
+    {
+        "id":  "2a0021de-869a-4a31-b151-0be7f78d9c05",
+        "name":  "MHB-17 Manh LRW @ X OVER",
+        "direction":  "W",
+        "ocrText":  "Facing West Mon"
+    },
+    {
+        "id":  "7d10cfbb-0465-4958-90fc-ddd5349d6635",
+        "name":  "West St @ Canal St",
+        "direction":  "S",
+        "ocrText":  "Facing South Mon Jul"
+    },
+    {
+        "id":  "17855127-7fe2-45d4-920c-ed14e80ec4d7",
+        "name":  "Third Ave Bridge",
+        "direction":  "W",
+        "ocrText":  "Facing West Mon Jul"
+    },
+    {
+        "id":  "879ab924-18ac-4779-a681-395d73a0f0cc",
+        "name":  "Madison Ave @ E 44 St",
+        "direction":  null,
+        "ocrText":  ""
+    },
+    {
+        "id":  "7cfc551d-403d-46a8-aa74-89f472b7136b",
+        "name":  "Broadway @ Battery pl",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "08e77bd0-c673-4303-b772-243fdee28d6c",
+        "name":  "BB-28A Manhattan Tower North",
+        "direction":  "W",
+        "ocrText":  "Facing West Mon"
+    },
+    {
+        "id":  "16de4b9a-83fe-4d11-91cd-d775cc1e559c",
+        "name":  "FDR Dr @ 111 ST",
+        "direction":  null,
+        "ocrText":  "Mon Jul 20 2026 04"
+    },
+    {
+        "id":  "6c2996f1-3d8f-44a9-8ce0-a827ae8d3680",
+        "name":  "FDR @ 145 St",
+        "direction":  null,
+        "ocrText":  "MonJul 20"
+    },
+    {
+        "id":  "4f3f56e3-f68e-4b60-a4ba-153ecb9094f7",
+        "name":  "6 AVE @ 50 St",
+        "direction":  "N",
+        "ocrText":  "Facing North Mon Jul"
+    },
+    {
+        "id":  "7a6da464-d347-438c-b599-818760cc218b",
+        "name":  "11 Ave @ 49 St",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "0b0cbcfb-7c14-4b94-8bac-be494472c396",
+        "name":  "Amsterdam @ 86 St",
+        "direction":  "S",
+        "ocrText":  "Facing South Mon"
+    },
+    {
+        "id":  "bf8404ae-6ab7-47a1-8b3e-2f57f537a71f",
+        "name":  "5 Ave @ 96 St",
+        "direction":  null,
+        "ocrText":  "Mon Jul 20 2026"
+    },
+    {
+        "id":  "4048d465-2272-446e-bccb-c49ea6d62bd3",
+        "name":  "FDR Dr @ BPU Entrance",
+        "direction":  null,
+        "ocrText":  "Mon Jul 20 2026 04"
+    },
+    {
+        "id":  "28107d1c-08da-4cd3-9777-09471ca30225",
+        "name":  "Henry Hudson Pkwy @ 96 St",
+        "direction":  "N",
+        "ocrText":  "Facing North MO"
+    },
+    {
+        "id":  "ccd1abb9-0683-4d93-a62f-b2b121612d28",
+        "name":  "9 Ave @ 42 St",
+        "direction":  null,
+        "ocrText":  "Mon Jul 20 2026"
+    },
+    {
+        "id":  "9565e94d-66f2-4965-9c13-82d5500d6cfd",
+        "name":  "Broadway @ 42 St",
+        "direction":  "W",
+        "ocrText":  "Faci gwest"
+    },
+    {
+        "id":  "3546896d-d4c6-4966-8a43-2fe62e26526f",
+        "name":  "E 8 St @ Lafayette St",
+        "direction":  null,
+        "ocrText":  "Mon Jul 20 2026"
+    },
+    {
+        "id":  "02d7db8e-481d-477e-9cdb-a2b6c6ec1ca3",
+        "name":  "2 Ave @ E 14 St",
+        "direction":  "S",
+        "ocrText":  "Facing SouthlMon Jul"
+    },
+    {
+        "id":  "5efba010-6a58-4df5-ae2c-ef1eda48fad0",
+        "name":  "West street underpass entrance",
+        "direction":  null,
+        "ocrText":  "Mon Jul 20 2026 04"
+    },
+    {
+        "id":  "bff66919-97a3-47ca-b16d-ca07ff93a546",
+        "name":  "Lexington Ave @ 23 St",
+        "direction":  null,
+        "ocrText":  "07/20/2026 04:23"
+    },
+    {
+        "id":  "3dc1adcd-7a47-45c3-a667-9d8fae9fdcd0",
+        "name":  "8 Ave @ 14 St",
+        "direction":  null,
+        "ocrText":  "Mon Jul 20 2026 0,"
+    },
+    {
+        "id":  "24c402b2-915d-49f8-9529-f723a171c134",
+        "name":  "FDR @ Grand St",
+        "direction":  null,
+        "ocrText":  "Mon-JUI"
+    },
+    {
+        "id":  "0b4bd3d3-1741-49b3-87cc-d0960fa5f424",
+        "name":  "Lexington Ave @ 34 St",
+        "direction":  null,
+        "ocrText":  "Mon Jul 20 2026 04"
+    },
+    {
+        "id":  "180dcc87-d861-43e3-8898-9ad5ee1a26a9",
+        "name":  "Lexington Ave @ 57 ST",
+        "direction":  null,
+        "ocrText":  "Mon Jul 20 2026 04"
+    },
+    {
+        "id":  "58ca7f66-a60c-4b2d-9cb5-a68e8ac545ac",
+        "name":  "Varick st @ Broome st",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "63930c04-926c-4730-821e-95b486513843",
+        "name":  "RT. 9A @ N. Moore St",
+        "direction":  null,
+        "ocrText":  "07/20/2026 03:23"
+    },
+    {
+        "id":  "936d479d-402f-468a-b1c6-b2c2a68a0b4c",
+        "name":  "Harlem River Dr Ramp @ Before GWB \u0026 Amst_179St Exit",
+        "direction":  "N",
+        "ocrText":  "Facing North 2026-07-"
+    },
+    {
+        "id":  "48cd1b5b-f361-4683-9d83-492d4789d7ea",
+        "name":  "Grand St @ Allen St",
+        "direction":  "E",
+        "ocrText":  "Facing East Mon"
+    },
+    {
+        "id":  "22df28bd-413a-4847-9bb7-35a36c914264",
+        "name":  "1st camera North Bound BPU -148.51",
+        "direction":  "N",
+        "ocrText":  "Facing Porth ü7/2ü."
+    },
+    {
+        "id":  "9bb33444-d2ec-47bd-952a-174f87013736",
+        "name":  "7 AVE / ADAM CLAYTON POWELL BLVD@ 125 St",
+        "direction":  "N",
+        "ocrText":  "Facing North Mon"
+    },
+    {
+        "id":  "9fda4742-9a18-4a32-b090-8825b201f0d5",
+        "name":  "FDR Drive @ 124 St",
+        "direction":  null,
+        "ocrText":  "2026-07-20 16:23"
+    },
+    {
+        "id":  "30bcfac8-ebd1-40c7-ae4c-1d93113bd465",
+        "name":  "BB-21 North Rdwy @ Above South St",
+        "direction":  null,
+        "ocrText":  "07/2072026X04•.2"
+    },
+    {
+        "id":  "6a49e889-4397-4c5a-a942-2225c1f1c5e7",
+        "name":  "C4-WST-07-Med_at_W.23rd_St",
+        "direction":  null,
+        "ocrText":  ""
+    },
+    {
+        "id":  "3486cafa-aab2-418a-baa4-89dcc438e8c9",
+        "name":  "5 Ave @ 23 St",
+        "direction":  null,
+        "ocrText":  ""
+    },
+    {
+        "id":  "8cd15417-5b79-4065-9165-4b6ff0ff3f53",
+        "name":  "Broadway @ 46 St- Quad West",
+        "direction":  null,
+        "ocrText":  "Tyton Jul"
+    },
+    {
+        "id":  "19a2c89d-ea4d-437a-ae0c-2902ade217d6",
+        "name":  "Central Park West @ 96 St",
+        "direction":  "N",
+        "ocrText":  "Facing North"
+    },
+    {
+        "id":  "3a3d7bc0-7f35-46ba-9cca-75fe83aac34d",
+        "name":  "5 Ave @ 34 St",
+        "direction":  "N",
+        "ocrText":  "Facin North Mon JI"
+    },
+    {
+        "id":  "35a808cf-7e4d-4ca5-891d-36ac48518662",
+        "name":  "West Side HWY BPU Entrance -148.54",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "aacb43bf-ed37-44c6-a2fe-8449a7851306",
+        "name":  "5 Ave @ 35 St ",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "73b66e92-508f-407c-bada-883ab992fde0",
+        "name":  "Broadway @ Vesey St",
+        "direction":  "N",
+        "ocrText":  "Facing North Mon"
+    },
+    {
+        "id":  "96be7098-dda4-42da-bfe2-55bc5c6b94fb",
+        "name":  "Baxter St @ Canal Street",
+        "direction":  null,
+        "ocrText":  "07/20/26"
+    },
+    {
+        "id":  "0c9a2836-c408-48d3-85c7-1977c33d9133",
+        "name":  "Broadway @ 46 St",
+        "direction":  null,
+        "ocrText":  ""
+    },
+    {
+        "id":  "404fac12-9b5c-430b-a01b-12b50d39521c",
+        "name":  "9 Ave @ 49 St",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "b03d3f18-928f-4fcf-b0f5-bbd18314f492",
+        "name":  "12 Ave @ W 49 St",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "beda95e2-f7d1-43a3-9a8b-7ab89e03f296",
+        "name":  "FDR Dr @ Catherine Street",
+        "direction":  null,
+        "ocrText":  "Mon Jul 20 2026"
+    },
+    {
+        "id":  "0acd4543-183d-40c7-993e-e39eb831de0b",
+        "name":  "QBB LL CM @ York Ave",
+        "direction":  null,
+        "ocrText":  "Mon Jul 20 2026"
+    },
+    {
+        "id":  "434094f8-1be4-4c19-8067-1e11049e46b4",
+        "name":  "Madison Ave @ 46 St - Manhattan",
+        "direction":  "S",
+        "ocrText":  "Facing South Mon"
+    },
+    {
+        "id":  "43bb4857-e86e-4775-916e-6b26cedaf554",
+        "name":  "Broadway @ 125 St",
+        "direction":  null,
+        "ocrText":  "Mon Jul 20 2026"
+    },
+    {
+        "id":  "2334b7bd-a237-4bf5-9224-5241bd4ee29e",
+        "name":  "WBB-6 South Rdwy @ Delancy St and Clinton St",
+        "direction":  null,
+        "ocrText":  "Facin i/es€\u0027"
+    },
+    {
+        "id":  "b0cbb042-de0a-449f-b5d1-49f68a9bf2ae",
+        "name":  "7 Ave @ 36 St",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "aacbd8a1-56b6-4757-b0b0-1bea396469c6",
+        "name":  "11 Ave @ 34 ST",
+        "direction":  "N",
+        "ocrText":  "Facing North Mon Jul"
+    },
+    {
+        "id":  "8437bc26-9eb8-4915-93f7-f8ea4170e739",
+        "name":  "9 AVE @ 14 St",
+        "direction":  "S",
+        "ocrText":  "Facing South 07/20."
+    },
+    {
+        "id":  "a4417c97-9878-4b98-902f-58860d63e7cb",
+        "name":  "WBB - 11  NIR-5 @ East of Manhattan Tower",
+        "direction":  null,
+        "ocrText":  ""
+    },
+    {
+        "id":  "a9979a0c-71f2-4f5e-a87c-4d29c1104d5c",
+        "name":  "WBB-6 North Rdwy @ Delancey St \u0026 Clinton St",
+        "direction":  null,
+        "ocrText":  "Mon"
+    },
+    {
+        "id":  "46181c0e-f2ae-4daa-8a94-74dd5b2bbc19",
+        "name":  "QBB NOR @ York Ave",
+        "direction":  null,
+        "ocrText":  ""
+    },
+    {
+        "id":  "ba3d9734-3871-4d49-b46b-88d88dd96e71",
+        "name":  "AVE C @ 23 St",
+        "direction":  null,
+        "ocrText":  "Mon Jul 20 2026"
+    },
+    {
+        "id":  "bc2fd2da-1d56-46fa-a1ab-8674fac93877",
+        "name":  "7 Ave @ 43 St - 64.186 - PTZ",
+        "direction":  "E",
+        "ocrText":  "Facing East Mon Jul"
+    },
+    {
+        "id":  "45cb119b-0e4a-442e-9410-b810ab8c255d",
+        "name":  "7 Ave @ 43 St",
+        "direction":  "S",
+        "ocrText":  "Facing South 07/20."
+    },
+    {
+        "id":  "2191c11c-1757-4938-a608-a2c6ae0e6486",
+        "name":  "9 Ave @ 30 St",
+        "direction":  "N",
+        "ocrText":  "Facing North Mon Jul"
+    },
+    {
+        "id":  "bb9ce48d-0458-4493-89ad-ae51065b5796",
+        "name":  "Lincoln Tun Approach(Bet. 9Av \u0026 10Av) @ W 33 St - 3.50",
+        "direction":  null,
+        "ocrText":  "2026-07-201 s: 23:13"
+    },
+    {
+        "id":  "140a20d7-7ae7-409c-8c18-67d6b2ef7b2d",
+        "name":  "West st and Battery place",
+        "direction":  "N",
+        "ocrText":  "Facin North"
+    },
+    {
+        "id":  "bca4a4b0-d73f-4937-9301-85ff8293bd94",
+        "name":  "7 AVE @ 42 St",
+        "direction":  "E",
+        "ocrText":  "Facing East 07/20\""
+    },
+    {
+        "id":  "19789499-03ac-45de-9401-a7a71ea60d1e",
+        "name":  "7 AVE @ 44 St",
+        "direction":  null,
+        "ocrText":  "Mon Jul 20 2026 04:2"
+    },
+    {
+        "id":  "4850e464-1111-4b5d-a72d-f54a0e12a789",
+        "name":  "8 Ave @ 49 St",
+        "direction":  "S",
+        "ocrText":  "FÄPlWSouth Mod@ü"
+    },
+    {
+        "id":  "50725dbd-6e39-4ed0-aa3b-89f9c8feff4e",
+        "name":  "FDR Dr @ 135 Street",
+        "direction":  null,
+        "ocrText":  "MonJul 20"
+    },
+    {
+        "id":  "3309fba1-cc5f-483a-92bc-7d85951f1558",
+        "name":  "FDR Dr @ Old Slip",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "4ebe49c8-3e68-43f7-b415-da3db9f72693",
+        "name":  "7 Ave @ 54 St",
+        "direction":  "N",
+        "ocrText":  "Facing North Mon Jul 2C"
+    },
+    {
+        "id":  "0bcfbc92-d455-4f62-846a-32afbefa3b4b",
+        "name":  "Amsterdam @ 72 St",
+        "direction":  null,
+        "ocrText":  "23 07/20/2026 04:"
+    },
+    {
+        "id":  "bff9cee2-1513-4af3-9838-ea7a35552049",
+        "name":  "Rockefeller Plaza @ W 51 St",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "74bdd301-683c-4ea7-abf2-a5715dca8e17",
+        "name":  "York Ave @ 63 St",
+        "direction":  null,
+        "ocrText":  "Mon Jul 20 2026"
+    },
+    {
+        "id":  "32651453-d9de-4cde-af4b-be42b8de2775",
+        "name":  "BB-39 North Rdwy @ Bridge Midspan",
+        "direction":  null,
+        "ocrText":  "Mon Jul 20 2026"
+    },
+    {
+        "id":  "547cd268-58f9-4a84-a235-dbaa0432d79a",
+        "name":  "South Street @ Pike Street",
+        "direction":  null,
+        "ocrText":  "Mon Jul 20 2026"
+    },
+    {
+        "id":  "5214cfe8-ccfc-42e9-8e2a-ff2865c1a518",
+        "name":  "Houston St @ Broadway",
+        "direction":  null,
+        "ocrText":  "Éacing Out Mon"
+    },
+    {
+        "id":  "bb362cd8-057b-4538-bdee-cf846a725ea0",
+        "name":  "Dyer Ave @ W 40 St",
+        "direction":  null,
+        "ocrText":  "07/20/2026 P"
+    },
+    {
+        "id":  "63e79f0b-7dea-4c8e-864c-f3315f9cc62c",
+        "name":  "Grand St @ Broadway",
+        "direction":  "N",
+        "ocrText":  "Facing Uorth 07/20"
+    },
+    {
+        "id":  "c2b6f1ab-8baa-4384-9dc9-5bd2e374701e",
+        "name":  "FDR Dr @ 155 Street",
+        "direction":  null,
+        "ocrText":  "MonJul 20 16:23:15"
+    },
+    {
+        "id":  "5e0c441b-7587-494c-aade-6fea9efc1c73",
+        "name":  "Malcolm X Blvd/Lenox Ave @ 110 St/CPN",
+        "direction":  "W",
+        "ocrText":  "Facing West Mon"
+    },
+    {
+        "id":  "c0f05969-abc6-4fa6-b317-3e6ba03e989a",
+        "name":  "Dyer Ave @ W 41 St",
+        "direction":  null,
+        "ocrText":  "2026-07-2004 : 23: 1 s"
+    },
+    {
+        "id":  "b222af52-75f2-4588-80ef-354bb7c159c8",
+        "name":  "Church St @ Park Pl",
+        "direction":  null,
+        "ocrText":  "Mon i)Ju1 2002026"
+    },
+    {
+        "id":  "3d8e276f-b179-414d-a506-679d5e559d3e",
+        "name":  "Broadway @ 51 St",
+        "direction":  "E",
+        "ocrText":  "Facing East Mon"
+    },
+    {
+        "id":  "769a2e94-5bbc-4a03-86a7-39d3a70213f7",
+        "name":  "Broadway @ 96 St",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "3df06012-4c10-46e1-81d0-55405342e8df",
+        "name":  "3 AVE @ 76 St",
+        "direction":  "S",
+        "ocrText":  "Facing South Mon Jul"
+    },
+    {
+        "id":  "d1363c77-e061-4414-be82-e6d749254859",
+        "name":  "Madison Ave @ 42 St",
+        "direction":  null,
+        "ocrText":  "Mon Jul 20 2026 04:2:"
+    },
+    {
+        "id":  "85837859-3e5d-4e1b-8740-1c2ea3ed5662",
+        "name":  "Broome St and Lafayette St",
+        "direction":  "S",
+        "ocrText":  "Facing South Mon"
+    },
+    {
+        "id":  "a249b3ee-bde9-4d6d-9a18-9cd2108d2eb0",
+        "name":  "Allen St @ Delancey St (B)",
+        "direction":  "E",
+        "ocrText":  "Facin East Mon Ju"
+    },
+    {
+        "id":  "b5a78bda-3ca9-4ad4-bd03-4cee70baba2d",
+        "name":  "5 Ave @ 59 St",
+        "direction":  "W",
+        "ocrText":  "Facing West Mon"
+    },
+    {
+        "id":  "d1c219c0-afdd-4fa4-a72c-cc1b1318b99d",
+        "name":  "9 Ave @ 23 St",
+        "direction":  null,
+        "ocrText":  "07/20/2026 16:23"
+    },
+    {
+        "id":  "b7e5959c-1fc5-4fd2-a73e-426127b587b1",
+        "name":  "Park Ave @ 86 St",
+        "direction":  "W",
+        "ocrText":  "Facing West"
+    },
+    {
+        "id":  "33aa3bec-8143-421c-a0f7-866a2feaa352",
+        "name":  "QBB SOR @ W Channel",
+        "direction":  null,
+        "ocrText":  ""
+    },
+    {
+        "id":  "1eb66413-6761-4eb0-bc04-e2533bb74b42",
+        "name":  "Madison Ave @ 49 St",
+        "direction":  "S",
+        "ocrText":  "tacinå south i\\Mon"
+    },
+    {
+        "id":  "b95471db-03ed-4fc3-9b91-561328029fd4",
+        "name":  "Houston St @ Bowery St",
+        "direction":  null,
+        "ocrText":  "MonJul 20"
+    },
+    {
+        "id":  "c880d0c4-db84-44c2-9f00-62f21a83b5d0",
+        "name":  "Broadway @ Columbus Circle",
+        "direction":  null,
+        "ocrText":  ".o_7L20"
+    },
+    {
+        "id":  "5b44d19e-de48-4941-b071-d2a4c08bd230",
+        "name":  "2 Ave @ 58 St",
+        "direction":  null,
+        "ocrText":  "Facmng Sou"
+    },
+    {
+        "id":  "c6d82dbd-1c49-478f-819f-a38c1826b628",
+        "name":  "Canal St @ 6 Ave ",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "b963b25c-9fcf-4a12-b502-c57468510315",
+        "name":  "QBB UL Entrance @ Thomson Ave",
+        "direction":  "E",
+        "ocrText":  "Facing East Mon"
+    },
+    {
+        "id":  "c5040f93-f4ec-4803-8370-8b931b0443e2",
+        "name":  "FDR Dr @ 64 St",
+        "direction":  null,
+        "ocrText":  ""
+    },
+    {
+        "id":  "5bb6d7d8-39ce-43b8-b539-376fbcf73927",
+        "name":  "3 Ave @ 49 St",
+        "direction":  null,
+        "ocrText":  "Mon Jul 20 2026 0,"
+    },
+    {
+        "id":  "d8122408-7092-41ba-a9db-ef8847edeaef",
+        "name":  "Broadway @ 43 St",
+        "direction":  "W",
+        "ocrText":  "Facin West Mon Ju"
+    },
+    {
+        "id":  "c6d013c9-e69b-4824-8dad-b6580491d916",
+        "name":  "Madison Ave @ E 43 St",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "15f7a00b-5afb-4193-a5e4-dfe7710a5dfe",
+        "name":  "3 AVE @ 34 ST",
+        "direction":  null,
+        "ocrText":  "Mon Jul 201\u003e026"
+    },
+    {
+        "id":  "9eca011a-81b1-4e4a-b44a-4ee2bc8affff",
+        "name":  "Queens Midtown Tunnel Exit @ 37 St",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "d892897d-5a64-4450-9502-2e91b3ce5eea",
+        "name":  "QBB SOR @ Sutton Pl",
+        "direction":  null,
+        "ocrText":  "Mon Jul 20 2026 04:2:"
+    },
+    {
+        "id":  "8385d983-6782-4219-8aab-98f26b224f9d",
+        "name":  "1 st Camera South Bound BPU-148.55",
+        "direction":  null,
+        "ocrText":  "07/20/26"
+    },
+    {
+        "id":  "2e5f0c0e-575d-4323-86ec-63e75acbf129",
+        "name":  "QBB UL CM @ Roosevelt",
+        "direction":  "S",
+        "ocrText":  "Facing South Mon"
+    },
+    {
+        "id":  "0952329e-6b6f-4286-b5e3-b682eae94e52",
+        "name":  "Broadway @ Chambers St",
+        "direction":  "E",
+        "ocrText":  "Facing East Mon Jul"
+    },
+    {
+        "id":  "ca545979-d0c1-4735-88d6-61b6311bb6bc",
+        "name":  "Henry Hudson Pkwy @ 125 St",
+        "direction":  "N",
+        "ocrText":  "Facing North"
+    },
+    {
+        "id":  "5352e130-4668-4be5-a7b9-9e1ce4ea6d4c",
+        "name":  "3 Ave @ 42 St",
+        "direction":  "W",
+        "ocrText":  "Facing• West Mon"
+    },
+    {
+        "id":  "c217a64e-95c3-4442-96d1-7a6c177615d7",
+        "name":  "CPW @ 110 St",
+        "direction":  null,
+        "ocrText":  ""
+    },
+    {
+        "id":  "444aa32f-8102-4ca6-a7f8-5c9fd8fd5571",
+        "name":  "Houston St @ Christies St",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "3f04a686-f97c-4187-8968-cb09265e08ff",
+        "name":  "Central Park @ 72nd St Post 37",
+        "direction":  null,
+        "ocrText":  ""
+    },
+    {
+        "id":  "5f9ef54f-f3ac-4ce9-ad39-2e483467867a",
+        "name":  "WBB - 5 NOR-5 @ Delancey St North/FDR",
+        "direction":  "N",
+        "ocrText":  "Facin North"
+    },
+    {
+        "id":  "dd80055d-ae29-469e-bce5-bf62228a3178",
+        "name":  "WBB - 16 SOR-4 @ Kent Ave South",
+        "direction":  "E",
+        "ocrText":  "Facing East 2026-07-2"
+    },
+    {
+        "id":  "8d7e94a5-7a81-4e92-8171-9f6c0f0ca7bf",
+        "name":  "FDR @ E 53 St",
+        "direction":  null,
+        "ocrText":  ""
+    },
+    {
+        "id":  "c34ca47e-e375-4b9f-a8d7-f9737566b783",
+        "name":  "6 Ave @ 42 St",
+        "direction":  "W",
+        "ocrText":  "Facing West Mon"
+    },
+    {
+        "id":  "99bd1846-c0e4-4689-b077-63d2525bf1aa",
+        "name":  "Amsterdam Ave @ W 180 st ",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "a356e2c6-7d95-4d93-85c1-da3d05485d8c",
+        "name":  "MADISON @ 34 ST",
+        "direction":  null,
+        "ocrText":  "Mon Jul 20 2026"
+    },
+    {
+        "id":  "1ccb8d7c-43d4-450e-b40c-79527766db75",
+        "name":  "Audobon Ave @ W 181 ST",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "2589c0d6-c389-4861-b812-4ae68f560eba",
+        "name":  "46 St Bet. 5 Ave \u0026 Madison Ave",
+        "direction":  "W",
+        "ocrText":  "aga g West Mon -I"
+    },
+    {
+        "id":  "cd949f21-54b2-4d11-8aae-4ffba8654271",
+        "name":  "5 Ave @ E 60 St",
+        "direction":  null,
+        "ocrText":  ".o_7L20"
+    },
+    {
+        "id":  "62b3062d-542f-40f1-86ec-206710e789b6",
+        "name":  "3 Ave @ 57 St",
+        "direction":  "S",
+        "ocrText":  "Facin South Mon JI"
+    },
+    {
+        "id":  "e610bc71-9bfb-4a92-928d-ad33cd1b9afd",
+        "name":  "Harlem River Dr @ Dyckman St /10 Av",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "cd229284-a743-4ac4-9430-366f11e68d6c",
+        "name":  "Irving Pl @ 14 St",
+        "direction":  "E",
+        "ocrText":  "Facin East Mon Ju"
+    },
+    {
+        "id":  "05468f62-4092-4ff5-9bb6-0f70e56ff544",
+        "name":  "2 Ave @ 49 St",
+        "direction":  "N",
+        "ocrText":  "Facing North 07/20."
+    },
+    {
+        "id":  "606916f2-cd00-4893-9d2b-4c9f9d6d974f",
+        "name":  "AVE C @ 18 St",
+        "direction":  null,
+        "ocrText":  "MonJul 20"
+    },
+    {
+        "id":  "8933100a-8229-42fe-b4b2-265db410d7ae",
+        "name":  "5 Ave @ 46 St",
+        "direction":  null,
+        "ocrText":  "Facing Not-tm 202"
+    },
+    {
+        "id":  "5531396b-856d-429b-8bde-a845ef87aead",
+        "name":  "Henry Hudson @ 158 St",
+        "direction":  "N",
+        "ocrText":  "Facing North"
+    },
+    {
+        "id":  "63bf5db0-582d-4482-ad51-52338c7f9906",
+        "name":  "3 Ave @ 14 St",
+        "direction":  "E",
+        "ocrText":  "Facin East Mon Ju"
+    },
+    {
+        "id":  "0f3b6031-fe36-43df-b2c7-6120e0580309",
+        "name":  "Brooklyn Bridge - Ped Walk Way",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "03a8a2da-3ac2-45aa-a5ba-4ff7d1ecbd22",
+        "name":  "5 Ave @ 47 St",
+        "direction":  null,
+        "ocrText":  "07/20/2026 04"
+    },
+    {
+        "id":  "dfc5bbff-683c-483d-bed5-8ff2b7c4781b",
+        "name":  "Harlem River Dr @ 150 St",
+        "direction":  "N",
+        "ocrText":  "Facing North Mon"
+    },
+    {
+        "id":  "9e3e26ae-d49f-4f64-ba99-113b779c25a2",
+        "name":  "Park Ave @ 53 St",
+        "direction":  null,
+        "ocrText":  ".o_7L20"
+    },
+    {
+        "id":  "66810a94-7065-4f6e-b306-3d3088930d89",
+        "name":  "11 Ave/Rt 9A @ 14 St",
+        "direction":  "N",
+        "ocrText":  "Facing North Mon Jul"
+    },
+    {
+        "id":  "074b4e06-5090-47a5-b672-8b15780c9255",
+        "name":  "2 Ave @ 79 St",
+        "direction":  "S",
+        "ocrText":  "Facing South 07/20."
+    },
+    {
+        "id":  "ce81bdbd-967b-4ad0-ab40-c4628bb59560",
+        "name":  "Park Ave @ 106 St",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "cdfc2dbe-7ce3-4775-ab7a-8440a9828358",
+        "name":  "Worth Street @ Bowery",
+        "direction":  null,
+        "ocrText":  ".o_7L20"
+    },
+    {
+        "id":  "326b2bab-d277-4c5a-9778-a7af791ad151",
+        "name":  "9 Ave @ 37 St",
+        "direction":  "N",
+        "ocrText":  "Facing North Mon JI"
+    },
+    {
+        "id":  "e278de5c-4cfa-46e7-aa85-59512db61f0d",
+        "name":  "FDR Dr @ 23 St",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "d138b651-e2ed-4065-a0f9-ef56a65f61d4",
+        "name":  "West Broadway @ West Houston St",
+        "direction":  "E",
+        "ocrText":  "Facing East Mon"
+    },
+    {
+        "id":  "d67e45e9-034f-4bd9-9bc3-12d07a12af48",
+        "name":  "3 Ave @ 114 St",
+        "direction":  null,
+        "ocrText":  "2026-07-2020: 23:17"
+    },
+    {
+        "id":  "d78ebdc6-2211-479e-bda6-59d79db20258",
+        "name":  "8 Ave @ 57 St",
+        "direction":  null,
+        "ocrText":  "Mon Jul 20 2026 16"
+    },
+    {
+        "id":  "d45fb588-de4c-4139-9e27-5b2d4c371b3d",
+        "name":  "York Ave @ 72 St",
+        "direction":  null,
+        "ocrText":  "2026-07-20 16:23:"
+    },
+    {
+        "id":  "9f6b60c8-b940-4eec-a3c5-4b60d24c751b",
+        "name":  "YORK AVENUE @ EAST 60 STREET",
+        "direction":  null,
+        "ocrText":  "7 20/20_2"
+    },
+    {
+        "id":  "1546f761-039c-4b5c-af5e-75c83c9f603f",
+        "name":  "Lexington Ave @ 42 St",
+        "direction":  null,
+        "ocrText":  "2026-07-20 16:23: v"
+    },
+    {
+        "id":  "d2940392-4ee6-433a-ae24-f4f4f15f2566",
+        "name":  "MHB-16A Manh East of Colonnade Entr",
+        "direction":  null,
+        "ocrText":  ""
+    },
+    {
+        "id":  "2bc8aef2-fc97-47e0-84cd-1efc8ee21bfe",
+        "name":  "10 Ave @ W 34 St",
+        "direction":  null,
+        "ocrText":  "2026-07-2004 : 23: 18"
+    },
+    {
+        "id":  "f2b94b32-fc41-42b6-935d-8330374ca05a",
+        "name":  "1 Ave @ 110 St",
+        "direction":  null,
+        "ocrText":  "2026-07-20 16:23"
+    },
+    {
+        "id":  "d1d8cd99-7609-409a-a739-f5913dabf4e6",
+        "name":  "Lexington Ave @ 49 St",
+        "direction":  null,
+        "ocrText":  "2026-07-20 16:23: v"
+    },
+    {
+        "id":  "db028e65-b4b4-4f83-a427-6be6cb3f2ace",
+        "name":  "Riverside DR. @ Pedestrian Crossing NOF 181 St",
+        "direction":  null,
+        "ocrText":  ".o_7L20"
+    },
+    {
+        "id":  "d9cd00ff-9b8e-492f-8b02-db27b6cf847c",
+        "name":  "BB - Ramp from Pearl St - 156.104",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "efa9a3d5-e5fa-440e-8f6e-68436b8c397b",
+        "name":  "Malcom X Blvd @ 145 St",
+        "direction":  "E",
+        "ocrText":  "Facing East Mon Jul"
+    },
+    {
+        "id":  "d83aed40-b117-424b-8caf-35c3afe82527",
+        "name":  "East 60th St @ Queensboro Bridge Exit ",
+        "direction":  null,
+        "ocrText":  "26-07-20"
+    },
+    {
+        "id":  "34616ac5-0cc5-4b86-ac7a-82c77238a536",
+        "name":  "West st and Chambers",
+        "direction":  "N",
+        "ocrText":  "Facin North"
+    },
+    {
+        "id":  "69c109a1-a8dd-4164-bbc1-88497dc67c1e",
+        "name":  "MHB-20 Mahn S URW @ Anch",
+        "direction":  null,
+        "ocrText":  "MonJul 20"
+    },
+    {
+        "id":  "6fc602cf-72c5-40cc-9a42-9a844de7bc1a",
+        "name":  "Grand St @ Essex St",
+        "direction":  "E",
+        "ocrText":  "Facing East"
+    },
+    {
+        "id":  "f9e26c16-1cd9-495d-a988-bd80666c28bb",
+        "name":  "WBB - NOR - 3 @  Kent Ave North",
+        "direction":  "E",
+        "ocrText":  "Facin East 2026-0\u0027"
+    },
+    {
+        "id":  "6d7298dd-f56a-4d33-b1d4-b2c1ec659dda",
+        "name":  "C4-WST-02-NB_at_Vestry_St",
+        "direction":  null,
+        "ocrText":  ""
+    },
+    {
+        "id":  "6fa8acf2-f5bf-4200-afde-1240868ca3e3",
+        "name":  "Houston St @ Lafeyette St",
+        "direction":  null,
+        "ocrText":  "Mon Jul 20 2026 04"
+    },
+    {
+        "id":  "e0ac368d-414a-4606-bea5-236e94a2d5b5",
+        "name":  "Brooklyn Bridge @ Centre Street",
+        "direction":  null,
+        "ocrText":  "Mon Jul 20 2026"
+    },
+    {
+        "id":  "74ca7d62-c8e5-4986-82fa-cd8d8db835b9",
+        "name":  "BB- 42 South Rdwy @ Bridge Midspan",
+        "direction":  null,
+        "ocrText":  ""
+    },
+    {
+        "id":  "76faba94-f9e5-42d7-981e-0cbbbfd4bc21",
+        "name":  "Broadway @ 46 Street",
+        "direction":  "S",
+        "ocrText":  "Facing South Mon"
+    },
+    {
+        "id":  "7ae8f58a-84e9-4c9f-9e90-daa2dc548f20",
+        "name":  "Pearl Street @ St. James Pl",
+        "direction":  "S",
+        "ocrText":  "Facin South"
+    },
+    {
+        "id":  "e4542be1-fe19-4efa-a25e-0d0c1065c8a2",
+        "name":  "58 St @ QBB UL Approach",
+        "direction":  "N",
+        "ocrText":  "Facing North 07/20."
+    },
+    {
+        "id":  "78a5c61d-9dce-4b52-b0da-bf7d22c1f501",
+        "name":  "8 Ave @ Columbus Cr South",
+        "direction":  "S",
+        "ocrText":  "Facing South Mon"
+    },
+    {
+        "id":  "82b5a027-8b2d-43ce-ba8e-329382bd61bf",
+        "name":  "Galvin Ave @ W 40 St",
+        "direction":  null,
+        "ocrText":  ".o_7L20"
+    },
+    {
+        "id":  "786650de-d254-47dc-aa8a-de9a4c231a2a",
+        "name":  "2 Ave @ 23 St",
+        "direction":  "N",
+        "ocrText":  "Facing North Mon JI"
+    },
+    {
+        "id":  "fcaf0a31-e2ec-4abe-815d-2623d5e7b87b",
+        "name":  "WBB SIR - 1 @ Manhattan Anchorage",
+        "direction":  "W",
+        "ocrText":  "fpcing IWest Mon Ju"
+    },
+    {
+        "id":  "fcfbaa3d-13e5-4687-9688-ae1eab37c723",
+        "name":  "7 Ave @ 23St",
+        "direction":  "W",
+        "ocrText":  "Facing West Mon"
+    },
+    {
+        "id":  "7a7016c5-a086-40fd-9298-90f17f8b6cea",
+        "name":  "5 Ave @ 49 St",
+        "direction":  null,
+        "ocrText":  "Faci \u0027Soutm o"
+    },
+    {
+        "id":  "79f45918-c13e-4357-9ccb-9e3e7ea5b6af",
+        "name":  "1 Ave @ 57 st",
+        "direction":  "S",
+        "ocrText":  "Facing South 07/20."
+    },
+    {
+        "id":  "fd82a010-c29e-4bcb-8d70-dd2204879a97",
+        "name":  "Water St @ Whitehall",
+        "direction":  "S",
+        "ocrText":  "Facing South Mon"
+    },
+    {
+        "id":  "7e2400e3-cad2-407a-927b-d575a35048e3",
+        "name":  "Central Park West @ 66 St",
+        "direction":  "N",
+        "ocrText":  "Facing North Mon"
+    },
+    {
+        "id":  "db84e6bd-1436-4213-bbfb-f6e0ceab38c7",
+        "name":  "West Houston @ Varick St",
+        "direction":  "S",
+        "ocrText":  "Facing South Mon JI"
+    },
+    {
+        "id":  "b55781b8-827c-40e3-b094-27c289d22f7a",
+        "name":  "10 Ave @ 42 St",
+        "direction":  null,
+        "ocrText":  "Facing usoüth lyon"
+    },
+    {
+        "id":  "62ecb539-5e6c-40ff-a771-ea77153cc4ed",
+        "name":  "Rockefeller Plz @ 48 St (between 5 Ave and 6 Ave)",
+        "direction":  null,
+        "ocrText":  "Mon Jul 20"
+    },
+    {
+        "id":  "7f865d20-e4f4-4f7c-88db-c0edf88a9501",
+        "name":  "Broadway @ 145 St",
+        "direction":  "N",
+        "ocrText":  "Facing North Mon"
+    },
+    {
+        "id":  "93dea5a7-a63f-4415-ae12-f32b62540f11",
+        "name":  "Kenmare St @ Cleveland pl",
+        "direction":  null,
+        "ocrText":  ".o_7L20"
+    },
+    {
+        "id":  "dbbf45f6-7d87-46fa-825f-454a7e2bbcad",
+        "name":  "Broadway @ 46 St- Quad East",
+        "direction":  null,
+        "ocrText":  "IvLon Jul"
+    },
+    {
+        "id":  "dcef88ca-8811-4b82-8fa9-50225dd03bc4",
+        "name":  "Br Br-19 N Rdwy @ FDR Dr",
+        "direction":  null,
+        "ocrText":  ""
+    },
+    {
+        "id":  "defa5e30-d6c7-4582-9ceb-03ff0fe7b93a",
+        "name":  "9 Ave @ 34 St",
+        "direction":  null,
+        "ocrText":  "26-07-20"
+    },
+    {
+        "id":  "843a0580-a31d-4e5b-90c5-c3875afdfa96",
+        "name":  "3rd Camera North Bound BPU",
+        "direction":  "N",
+        "ocrText":  "Facing North Mon JI"
+    },
+    {
+        "id":  "79e4e388-89f4-49ed-880f-390bb2b76651",
+        "name":  "QBB SOR @ 1 Ave",
+        "direction":  null,
+        "ocrText":  "2026-07-20 04:23"
+    },
+    {
+        "id":  "a6811e67-15ac-4289-97be-9c6dd1ae1c75",
+        "name":  "QBB NOR @ 1 Ave",
+        "direction":  null,
+        "ocrText":  "Uon Jul 20 16:22:,"
+    },
+    {
+        "id":  "fec41cf4-e167-48ae-9d40-785d8e86078d",
+        "name":  "MHB-16 Manhattan Colonade Entr",
+        "direction":  null,
+        "ocrText":  "Facink we"
+    },
+    {
+        "id":  "c733e881-862d-4874-9d00-9bfdc3b27cbc",
+        "name":  "Grand St @ Bowery",
+        "direction":  null,
+        "ocrText":  "Mon Jul 20 2026"
+    },
+    {
+        "id":  "85809312-60f2-4a52-a694-82628529c05a",
+        "name":  "Central Park S @ Columbus Cr",
+        "direction":  "E",
+        "ocrText":  "Facing East 07/201,"
+    },
+    {
+        "id":  "874223a4-dc80-4764-8d91-1590cd3737d4",
+        "name":  "FDR Dr @ 90 St",
+        "direction":  "W",
+        "ocrText":  "Facing West Mon Juck"
+    },
+    {
+        "id":  "a9b2501d-062f-43f8-9419-f89faa4f36ba",
+        "name":  "Riverside Dr @ Washington Br ENT ramp",
+        "direction":  null,
+        "ocrText":  ""
+    },
+    {
+        "id":  "81db80c2-13fe-4ae7-8b47-c08aa42d512f",
+        "name":  "5 Ave @ 66 St",
+        "direction":  "N",
+        "ocrText":  "Facing North Mon"
+    },
+    {
+        "id":  "ac9ea7e9-4ab8-4188-be33-40266bcf9378",
+        "name":  "2 AVE @ 86 St",
+        "direction":  "N",
+        "ocrText":  "Facin North Mon JI"
+    },
+    {
+        "id":  "7c9ef8dd-7587-4e39-b486-13ef4c7e5721",
+        "name":  "Central Park West @ 100 St",
+        "direction":  "N",
+        "ocrText":  "Facin North Mon JI"
+    },
+    {
+        "id":  "a26130e0-3c9b-4f43-b253-209d80d441f8",
+        "name":  "62 St @ QBB Upper Level exit ramp",
+        "direction":  "N",
+        "ocrText":  "Facing North 07/20."
+    },
+    {
+        "id":  "a3058350-1552-459f-8379-2fd06895e70a",
+        "name":  "Delancey St @ Bowery St ",
+        "direction":  null,
+        "ocrText":  "2026-07-2003: 23: 18"
+    },
+    {
+        "id":  "6be5adfc-1912-4811-9a04-01c8866280bb",
+        "name":  "West St @ Murray",
+        "direction":  "S",
+        "ocrText":  "Facing South 2026-1"
+    },
+    {
+        "id":  "90c74649-458d-4b5f-8f58-9ab77f03f4ad",
+        "name":  "Central Park West @ 77 St",
+        "direction":  null,
+        "ocrText":  "Mon Jul 20 2026 04:2"
+    },
+    {
+        "id":  "e777e4b4-25cb-4c39-98fc-8d6b25cf7de7",
+        "name":  "Lexington Ave @ 53 St ",
+        "direction":  null,
+        "ocrText":  "07/20/2026 04:23"
+    },
+    {
+        "id":  "9561ad5f-0eda-460b-ab12-41caa4e0a91e",
+        "name":  "47 St Bet. 5 Ave @ Madison Ave- Manhattan",
+        "direction":  "W",
+        "ocrText":  "Facing west Mon"
+    },
+    {
+        "id":  "ffae5a99-c403-41aa-9985-0633aee4aeff",
+        "name":  "Henry Hudson pkwy @ Exit 14 ,165 St/ GWB  ramp",
+        "direction":  null,
+        "ocrText":  "Mon Jul 20 2026 04:2:"
+    },
+    {
+        "id":  "f9ed4dbb-7dd1-4b0c-80df-7f5586109599",
+        "name":  "Queens Midtown Tunnel @ 35 St exit",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "f388803c-7e1b-4d67-ad61-87b25934a8a2",
+        "name":  "10 Ave @ 23 St",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "a4c12003-9638-473d-bfe3-dddf509c80b8",
+        "name":  "6 Ave @ 58 St",
+        "direction":  "S",
+        "ocrText":  "Fa-cing South Mon"
+    },
+    {
+        "id":  "a4bb497d-7e15-47c4-9787-374b013efbbe",
+        "name":  "Madison Ave @ 79 St",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "aa85b894-336d-42bb-9801-0359e452f845",
+        "name":  "1 Ave @ 62 St",
+        "direction":  "S",
+        "ocrText":  "Facing South Mon"
+    },
+    {
+        "id":  "a991a948-12b9-450a-a5ea-7ae01679f037",
+        "name":  "WBB -12 NIR-12 Manhattan Mid Span",
+        "direction":  "W",
+        "ocrText":  "Facing West 2026-0\u0027"
+    },
+    {
+        "id":  "e029a178-4289-4914-bf64-109d43b0ae35",
+        "name":  "BB-27 South-West Manhattan Tower",
+        "direction":  null,
+        "ocrText":  "2026-07-20 16:23"
+    },
+    {
+        "id":  "f9cb9d4c-10ad-42e4-8997-dbc9e12bd55a",
+        "name":  "E 14 St @ Irving Pl/Lexington Av",
+        "direction":  "S",
+        "ocrText":  "Facing South Mon"
+    },
+    {
+        "id":  "b331d9d1-c081-4476-8302-83445ac196e7",
+        "name":  "Dyer Ave @ 42 Street",
+        "direction":  null,
+        "ocrText":  "Mon Jul 20 2026 04"
+    },
+    {
+        "id":  "ee1b1d85-e8ce-485f-a539-12962933eb9f",
+        "name":  "7 Ave @ 34 St",
+        "direction":  "S",
+        "ocrText":  "Facing South"
+    },
+    {
+        "id":  "f96c7b05-c0a1-4d3c-93ae-b025bdea422a",
+        "name":  "Dyer Ave @ W 34 St",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "b5cf34ce-697e-42a1-b22f-8eb2c1f3e79e",
+        "name":  "1 Ave @ E. Houston St",
+        "direction":  "N",
+        "ocrText":  "Facing North 07/20/20"
+    },
+    {
+        "id":  "ecdddb78-10be-47c6-ba27-e5d9da6b9a22",
+        "name":  "Water St @ John St",
+        "direction":  null,
+        "ocrText":  ""
+    },
+    {
+        "id":  "e5f14a79-fe4c-450e-b81e-21d8c9e1ea9b",
+        "name":  "Harlem Rvr Dr (FDR) @ 166 St",
+        "direction":  "N",
+        "ocrText":  "Facing North}"
+    },
+    {
+        "id":  "ed12f2da-9f65-44f0-a162-123c412716c6",
+        "name":  "Canal Street @ Allen Street",
+        "direction":  null,
+        "ocrText":  "07/20/26"
+    },
+    {
+        "id":  "f865d9bf-0062-4d43-9c16-2a862d8af4f0",
+        "name":  "9 Ave @ 45 St",
+        "direction":  null,
+        "ocrText":  "2026-07-20 16"
+    },
+    {
+        "id":  "c75873dc-16d0-4e9c-b5b5-1c6ede0b0b63",
+        "name":  "FDR @ E 6 St",
+        "direction":  "N",
+        "ocrText":  "Facing North Mon"
+    },
+    {
+        "id":  "c61490de-9ab7-4321-919c-cf8ad9ca5100",
+        "name":  "2 Ave @ 59 St (QBB)",
+        "direction":  null,
+        "ocrText":  "Mon Jul 20 2026 04:2"
+    },
+    {
+        "id":  "c65db13c-61ee-4e8c-859f-fa52a297114a",
+        "name":  "BB-27A Manhattan Tower South",
+        "direction":  "E",
+        "ocrText":  "Facing East Mon"
+    },
+    {
+        "id":  "cb43382f-7b5f-43a7-918b-607a69b2fb3a",
+        "name":  "Pearl St @ Dover",
+        "direction":  "W",
+        "ocrText":  "Facing West Mon Jul"
+    },
+    {
+        "id":  "c6022d8a-69df-45be-aadd-ec39a18a18fb",
+        "name":  "Br Br-20 S Rdwy FDR Dr",
+        "direction":  "S",
+        "ocrText":  "Facing South 07/20."
+    },
+    {
+        "id":  "afff9762-e6d4-4b4d-a2e7-60c13763dd16",
+        "name":  "Bowery @ Cooper Sq \u0026 4 St",
+        "direction":  null,
+        "ocrText":  "Mon Jul 20 2026 04:2"
+    },
+    {
+        "id":  "a69c70f4-cedf-440c-83f7-743e7a158d09",
+        "name":  "11 Ave @ W 40 St",
+        "direction":  null,
+        "ocrText":  "2026-07-2004: 23:23"
+    },
+    {
+        "id":  "d47d2f63-cdc1-4f28-bc4c-e64ac07e4f1d",
+        "name":  "Union Sq @ 14 St",
+        "direction":  "S",
+        "ocrText":  "Facipg South Mon"
+    },
+    {
+        "id":  "d7910856-9d2c-4142-b8cc-cbd6c4b3acac",
+        "name":  "Broadway @ 169 Street",
+        "direction":  "N",
+        "ocrText":  "Facing North \u0027Mon"
+    },
+    {
+        "id":  "e438c68c-c1e4-4fc1-9d1e-28cab8acb42a",
+        "name":  "Henry Hudson Pkwy @ 70 St",
+        "direction":  null,
+        "ocrText":  "Mon Jul 20 2026"
+    },
+    {
+        "id":  "d4bbce49-b087-4524-a835-08cb253926a7",
+        "name":  "10 Ave @ 57 St",
+        "direction":  "N",
+        "ocrText":  "Facing North Mon"
+    },
+    {
+        "id":  "d8e022cc-c262-45ac-a939-8e86e20853fd",
+        "name":  "Ft Washington @ 178 St",
+        "direction":  null,
+        "ocrText":  "MonJul 20"
+    },
+    {
+        "id":  "e73b2210-e5e7-42c0-a48f-5ce07b28da43",
+        "name":  "Park Ave @ 96 St",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "f0e5c9aa-7700-4918-834f-c106189bde4b",
+        "name":  "1 Ave @ 42 St",
+        "direction":  null,
+        "ocrText":  "Mon Jul 0"
+    },
+    {
+        "id":  "eafc65f5-6ff9-4203-905f-3995b9fbc9eb",
+        "name":  "1 Ave @ 23 St",
+        "direction":  "S",
+        "ocrText":  "Facing South Mo"
+    },
+    {
+        "id":  "e5f322e7-e38c-4a3c-9b1b-8df2cb459884",
+        "name":  "FDR @ 48 St",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "ebac5b6e-bd3a-4046-926b-7446edab9bee",
+        "name":  "3 Ave @ E 14 St",
+        "direction":  null,
+        "ocrText":  "Jul 2"
+    },
+    {
+        "id":  "83bf2591-579d-415b-a0d4-fe39868b46d1",
+        "name":  "8 Ave @ 42 St",
+        "direction":  "S",
+        "ocrText":  "Facing South Mon"
+    },
+    {
+        "id":  "f3c6fe0c-75c8-4ce9-ad9a-5b7eb8e9087e",
+        "name":  "1 Ave @ 86 St",
+        "direction":  "S",
+        "ocrText":  "Facing% South!\u0027 Mo"
+    },
+    {
+        "id":  "f5c6fd9c-8e5b-4c3c-8c3e-31233678f15b",
+        "name":  "Lexington Ave @ 96 St",
+        "direction":  "W",
+        "ocrText":  "Facin West Mon Ju"
+    },
+    {
+        "id":  "f2fbddd2-a5bb-45fe-93ef-2a9b9940bbd5",
+        "name":  "FDR Dr @ 131 ST (3 Ave Br)",
+        "direction":  "N",
+        "ocrText":  "Facing North Mon Jul"
+    },
+    {
+        "id":  "f3d82b25-6b10-44c7-ae89-30df075a7ac8",
+        "name":  "Broadway @ 46 St- Quad North",
+        "direction":  null,
+        "ocrText":  "Mon Jul 20 20"
+    },
+    {
+        "id":  "f4d2c0f5-0148-45e7-95ba-a5185d8e8060",
+        "name":  "Park Ave @ 57 St",
+        "direction":  "W",
+        "ocrText":  "Facing West Mon Jul"
+    },
+    {
+        "id":  "e8a479f8-5170-4f1f-b258-b9745c966c71",
+        "name":  "Vanderbilt Ave @ E 45 St",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "f2a7f677-64db-4dd9-9810-82e4910c7799",
+        "name":  "5 Ave @ 84 St",
+        "direction":  "S",
+        "ocrText":  "-Facing; South Mon"
+    },
+    {
+        "id":  "ea36992f-a3bf-4cce-8942-05ff04e2ae5f",
+        "name":  "Park Ave @ 23 St",
+        "direction":  "N",
+        "ocrText":  "Pacing North Mon"
+    },
+    {
+        "id":  "f6799b6f-b7f9-451b-8c7a-eacc9e8c36a8",
+        "name":  "Lenox Ave @ 135 St",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "f4e822f7-d2a2-4146-851c-04b2fa6d5265",
+        "name":  "5 Ave @ 42 St",
+        "direction":  null,
+        "ocrText":  "ng Mon"
+    },
+    {
+        "id":  "fb31c502-9b4a-4c19-9b26-5b84a1a39ec3",
+        "name":  "Amsterdam Ave @ 79 St",
+        "direction":  null,
+        "ocrText":  "2026-07-20"
+    },
+    {
+        "id":  "f8e7c70d-bdcb-4394-b55c-d9bcef891fba",
+        "name":  "11 Ave @ 42 St",
+        "direction":  "S",
+        "ocrText":  "Facing South Mon"
+    },
+    {
+        "id":  "fc7db899-7a79-41f3-b9b1-b23ce64c5a5e",
+        "name":  "7 Ave @ 49 St",
+        "direction":  "E",
+        "ocrText":  "Facing East Mon"
+    },
+    {
+        "id":  "f78c30e5-2a4d-4a71-b5d4-482ba70d585f",
+        "name":  "FDR @ E 127 St",
+        "direction":  "S",
+        "ocrText":  "Facin South Mon JI"
+    },
+    {
+        "id":  "b6369867-aa5f-4df3-8af3-dcac2eb0dfc8",
+        "name":  "Canal St @ Broadway",
+        "direction":  "E",
+        "ocrText":  "Facing East Mon Jul"
+    },
+    {
+        "id":  "b6847d0c-ee18-409e-a3b8-e68f8365047c",
+        "name":  "West St @ Clarkson",
+        "direction":  null,
+        "ocrText":  "Mon Jul 20 2026 04:2"
+    },
+    {
+        "id":  "f0b924fe-0df6-4ac2-85a2-5d2b96d081d5",
+        "name":  "7 Ave @ 57 St",
+        "direction":  null,
+        "ocrText":  "Mon Jul 20 2026 04:2"
+    },
+    {
+        "id":  "b678c72f-c8cf-48dc-b97b-42c5bf3abd7b",
+        "name":  "MHB-24 Manh S URDWY @ Twr",
+        "direction":  "N",
+        "ocrText":  "Facing North"
+    },
+    {
+        "id":  "af2b479e-ec78-46b0-be35-6bbbd1691460",
+        "name":  "1 ave @ 40 st",
+        "direction":  "S",
+        "ocrText":  "Facing South 2026-07"
+    },
+    {
+        "id":  "f2964d50-042c-4021-8b52-992c08c6ff6f",
+        "name":  "8 Ave @ 34 St",
+        "direction":  null,
+        "ocrText":  "2026-07-20 16:23"
+    }
+]
