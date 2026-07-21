@@ -1,6 +1,9 @@
 # Secrets
 .env
 
+# Personal / social media staging — not for the repo
+X post/
+
 # Images — regenerable from scripts, ~33MB, not worth versioning
 camera_direction/images/
 camera_direction/results/composites/
