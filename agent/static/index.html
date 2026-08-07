@@ -402,13 +402,21 @@ document.getElementById('load311').addEventListener('click', async (e) => {
                 descriptor:row.descriptor || '', address:row.incident_address || ''
               })
             }).then(x => x.json());
-            const a = res.assessment || {};
             const v = document.createElement('div');
-            v.className = 'verdict ' + (a.verdict || 'inconclusive');
-            v.innerHTML = `<b>${(a.verdict||'inconclusive').replace('_',' ')} · ` +
-              `${Math.round((a.confidence||0)*100)}%</b>${a.reasoning||'no reading'}` +
-              (a.scene ? `<div style="color:var(--muted);margin-top:5px">${a.scene}</div>` : '') +
-              (res.camera ? `<img src="${res.camera.url}?t=${Date.now()}">` : '');
+            if (!res.verified){
+              // Say what actually went wrong rather than dressing a failure
+              // up as an "inconclusive" verdict.
+              v.className = 'verdict inconclusive';
+              v.innerHTML = `<b>could not check</b>${res.reason || 'unknown error'}` +
+                (res.error ? `<div style="color:var(--muted);margin-top:5px">${res.error}</div>` : '');
+            } else {
+              const a = res.assessment || {};
+              v.className = 'verdict ' + (a.verdict || 'inconclusive');
+              v.innerHTML = `<b>${(a.verdict||'inconclusive').replace('_',' ')} · ` +
+                `${Math.round((a.confidence||0)*100)}%</b>${a.reasoning||'no reading'}` +
+                (a.scene ? `<div style="color:var(--muted);margin-top:5px">${a.scene}</div>` : '') +
+                (res.camera ? `<img src="${res.camera.url}?t=${Date.now()}">` : '');
+            }
             el.appendChild(v);
             b.textContent = 'Re-check';
           }catch(err){ b.textContent = 'Failed — retry'; }

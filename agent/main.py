@@ -432,15 +432,27 @@ def api_verify(req: VerifyRequest):
     if not cams:
         return {"verified": False, "reason": "no camera within range", "cameras": []}
 
-    best = cams[0]
-    try:
-        r = requests.get(best["url"], timeout=FRAME_TIMEOUT)
-        frame = r.content if r.status_code == 200 else None
-    except Exception:
-        frame = None
+    # Individual cameras drop out constantly, so don't stake the answer on one.
+    # Try each candidate (best-pointed first), twice, and use the first frame
+    # that actually arrives.
+    frame, best, tried = None, cams[0], []
+    for cand in cams:
+        for attempt in range(2):
+            try:
+                r = requests.get(cand["url"], timeout=FRAME_TIMEOUT)
+                if r.status_code == 200 and r.content:
+                    frame, best = r.content, cand
+                    break
+                tried.append(f"{cand['name']}: HTTP {r.status_code}")
+            except Exception as e:
+                tried.append(f"{cand['name']}: {type(e).__name__}")
+        if frame:
+            break
+
     if not frame:
-        return {"verified": False, "reason": "camera frame unavailable",
-                "camera": best, "cameras": cams}
+        return {"verified": False, "reason": "no camera returned a frame",
+                "error": "; ".join(tried[:6]),
+                "camera": cams[0], "cameras": cams}
 
     # Surface the real reason rather than a bare 500 — on Cloud Run the usual
     # causes are aiplatform.googleapis.com not enabled, or the service account
