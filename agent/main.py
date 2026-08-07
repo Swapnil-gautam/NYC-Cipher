@@ -235,34 +235,32 @@ def gemini_verify(frame: bytes, complaint_type: str, descriptor: str,
 
 SOCRATA_311 = "https://data.cityofnewyork.us/resource/erm2-nwe9.json"
 
-# Complaints a street camera could plausibly settle. 311 carries hundreds of
-# types, but most are indoors, administrative, or about things no camera can
-# see (noise, food poisoning, heat/hot water). Asking Gemini about those wastes
-# a call and produces "inconclusive" every time.
+# Complaints a 352x240 traffic camera can genuinely settle.
+#
+# The bar is deliberately high: the subject has to be vehicle-sized or larger,
+# or a lighting-level change. At this resolution a pedestrian is roughly five
+# pixels, so anything person-scale or smaller (dog waste, curb defects, litter,
+# sidewalk cracks) cannot be judged from the frame and only ever comes back
+# "inconclusive". Person-level complaints are excluded on purpose for a second
+# reason too: identifying individuals from municipal cameras is not something
+# this should be doing.
 VERIFIABLE_TYPES = [
-    "Street Condition",
-    "Sidewalk Condition",
-    "Highway Condition",
-    "Curb Condition",
+    # vehicles — unambiguous at this resolution
     "Illegal Parking",
     "Blocked Driveway",
     "Derelict Vehicles",
     "Abandoned Vehicle",
+    # roadway state — fills a large part of the frame
+    "Street Condition",
+    "Highway Condition",
+    "Traffic",
+    # lighting and signals — visible as on/off, especially after dark
     "Street Light Condition",
     "Traffic Signal Condition",
-    "Street Sign - Damaged",
-    "Street Sign - Missing",
+    # large fixed objects
     "Damaged Tree",
     "Dead/Dying Tree",
     "Overgrown Tree/Branches",
-    "Dirty Condition",
-    "Sanitation Condition",
-    "Missed Collection",
-    "Encampment",
-    "Homeless Person Assistance",
-    "Construction Lower Manhattan",
-    "Root/Sewer/Sidewalk Condition",
-    "Traffic",
 ]
 
 
