@@ -274,24 +274,35 @@ def api_cameras():
 
 @app.get("/api/latest")
 def api_latest():
+    cycles = _ordered()
+    if not cycles:
+        return JSONResponse({"ready": False, "state": STATE}, status_code=202)
+    return {"ready": True, **cycles[-1]}
+
+
+def _ordered() -> List[Dict]:
+    """Sweeps oldest-first, one per timestamp.
+
+    Arrival order is not chronological: a backfill replays old sweeps after
+    live ones have already landed, and re-running it would otherwise duplicate
+    them. The UI scrubs by array position, so this has to be sorted.
+    """
     with _lock:
-        if not CYCLES:
-            return JSONResponse({"ready": False, "state": STATE}, status_code=202)
-        return {"ready": True, **CYCLES[-1]}
+        raw = list(CYCLES)
+    dedup = {int(c["ts"]): c for c in raw}
+    return [dedup[k] for k in sorted(dedup)]
 
 
 @app.get("/api/cycles")
 def api_cycles(limit: int = 400):
     """Every buffered sweep, counts included, so the UI can scrub history
     without refetching each one."""
-    with _lock:
-        return list(CYCLES)[-limit:]
+    return _ordered()[-limit:]
 
 
 @app.get("/api/series")
 def api_series(camera_id: Optional[str] = None):
-    with _lock:
-        cycles = list(CYCLES)
+    cycles = _ordered()
     if camera_id:
         blank = {k: 0 for k in COUNT_KEYS}
         return [{"ts": c["ts"], **c["counts"].get(camera_id, blank)} for c in cycles]
