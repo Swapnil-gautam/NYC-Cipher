@@ -147,6 +147,9 @@ STATE: Dict[str, Any] = {
 }
 _lock = threading.Lock()
 
+# Which model actually answered, once we've found one that works.
+MODEL_STATE: Dict[str, Any] = {"resolved": None}
+
 
 def snapshot_to_gcs(cycle: Dict) -> None:
     if not GCS_BUCKET:
@@ -192,18 +195,42 @@ def gemini_verify(frame: bytes, complaint_type: str, descriptor: str,
         "words), scene (<=20 words describing the frame)."
     )
 
-    resp = client.models.generate_content(
-        model=os.environ.get("GEMINI_MODEL", "gemini-3.5-flash"),
-        contents=[types.Part.from_bytes(data=frame, mime_type="image/jpeg"), prompt],
-        config=types.GenerateContentConfig(
-            temperature=0, response_mime_type="application/json"),
-    )
+    # Model availability differs between AI Studio and Vertex, and between
+    # Vertex regions — a name that works in one 404s in another. Try in order
+    # and keep the first that answers, so one missing model can't kill the
+    # feature mid-demo.
+    candidates = [m.strip() for m in os.environ.get(
+        "GEMINI_MODEL",
+        "gemini-3.5-flash,gemini-3-flash-preview,gemini-2.5-flash,gemini-2.0-flash"
+    ).split(",") if m.strip()]
+
+    resp, used, errors = None, None, []
+    for name in candidates:
+        try:
+            resp = client.models.generate_content(
+                model=name,
+                contents=[types.Part.from_bytes(data=frame, mime_type="image/jpeg"),
+                          prompt],
+                config=types.GenerateContentConfig(
+                    temperature=0, response_mime_type="application/json"),
+            )
+            used = name
+            break
+        except Exception as e:
+            errors.append(f"{name}: {type(e).__name__}")
+
+    if resp is None:
+        raise RuntimeError("no usable model — tried " + "; ".join(errors))
+
+    MODEL_STATE["resolved"] = used
     try:
-        return json.loads(resp.text)
+        out = json.loads(resp.text)
+        out["model"] = used
+        return out
     except Exception:
         return {"verdict": "inconclusive", "confidence": 0.0,
                 "reasoning": "model returned unparseable output",
-                "scene": (resp.text or "")[:120]}
+                "scene": (resp.text or "")[:120], "model": used}
 
 
 SOCRATA_311 = "https://data.cityofnewyork.us/resource/erm2-nwe9.json"
@@ -262,7 +289,12 @@ def healthz():
         age = round(time.time() - STATE["last_cycle"])
     return {"ok": True, **STATE, "cycles_buffered": len(CYCLES),
             "seconds_since_last_sweep": age, "cameras": len(CAMERAS),
-            "with_heading": sum(1 for c in CAMERAS if c["dir"])}
+            "with_heading": sum(1 for c in CAMERAS if c["dir"]),
+            "auth_mode": "vertex" if os.environ.get(
+                "GOOGLE_GENAI_USE_VERTEXAI", "").lower() in ("1", "true")
+                else "api-key",
+            "location": os.environ.get("GOOGLE_CLOUD_LOCATION", "us-central1"),
+            "model_resolved": MODEL_STATE["resolved"]}
 
 
 @app.get("/api/cameras")
