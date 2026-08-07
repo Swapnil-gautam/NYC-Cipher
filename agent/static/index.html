@@ -56,6 +56,11 @@
   .tile.c311 .n{color:var(--hot)}
   .totals{grid-template-columns:repeat(3,1fr)}
 
+  .hint311{font-family:var(--mono);font-size:11px;line-height:1.65;
+           color:var(--muted);background:var(--panel-2);border:1px dashed var(--rule);
+           border-radius:5px;padding:12px 13px}
+  .hint311 b{color:var(--ink)}
+
   .range311{display:flex;align-items:center;gap:8px;margin-bottom:9px}
   .range311 label{font-family:var(--mono);font-size:10px;letter-spacing:.08em;
                   text-transform:uppercase;color:var(--muted)}
@@ -240,11 +245,7 @@ function draw311(){
       (seer ? `<br>seen by ${seer.name}` : '') + `</span>`,
       {direction:'top', offset:[0,-10], opacity:1, className:'cam-tt'}
     );
-    m.on('click', () => {
-      const card = document.getElementById('c-' + c.unique_key);
-      if (card){ card.scrollIntoView({behavior:'smooth', block:'center'});
-                 card.style.borderColor = 'var(--hot)'; }
-    });
+    m.on('click', () => showComplaint(c));
     m.addTo(layer311);
   }
   document.getElementById('n-311').textContent = complaints.length || '–';
@@ -435,6 +436,65 @@ async function poll(){
   }
 }
 
+/* One complaint, shown on its own. The panel holds the selection, not the
+   whole list — the map is the list. */
+function showComplaint(row){
+  const box = document.getElementById('list311');
+  box.innerHTML = '';
+  map.setView([+row.latitude, +row.longitude], 16);
+
+  const cams = row.cameras || [];
+  const seer = cams.find(c => c.in_view);
+  const el = document.createElement('div');
+  el.className = 'c311';
+  el.innerHTML =
+    `<div class="t">${row.complaint_type}</div>` +
+    `<div class="m">${row.descriptor || ''}<br>${row.incident_address || ''}<br>` +
+    `${new Date(row.created_date).toLocaleString()}</div>` +
+    (seer
+      ? `<span class="badge see">IN VIEW</span><span class="badge">${seer.name}</span>` +
+        `<span class="badge">${seer.distance_m}m · ${seer.off_axis_deg}&deg; off-axis</span>`
+      : `<span class="badge blind">NO CAMERA POINTED AT IT</span>`);
+
+  if (seer){
+    const b = document.createElement('button');
+    b.className = 'go'; b.textContent = 'Verify with Gemini';
+    b.style.marginTop = '9px';
+    b.onclick = async () => {
+      b.disabled = true; b.textContent = 'Checking…';
+      try{
+        const res = await fetch('/api/verify', {
+          method:'POST', headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({
+            latitude:+row.latitude, longitude:+row.longitude,
+            complaint_type:row.complaint_type,
+            descriptor:row.descriptor || '', address:row.incident_address || ''
+          })
+        }).then(x => x.json());
+        const v = document.createElement('div');
+        if (!res.verified){
+          v.className = 'verdict inconclusive';
+          v.innerHTML = `<b>could not check</b>${res.reason || 'unknown error'}` +
+            (res.error ? `<div style="color:var(--muted);margin-top:5px">${res.error}</div>` : '');
+        } else {
+          const a = res.assessment || {};
+          v.className = 'verdict ' + (a.verdict || 'inconclusive');
+          v.innerHTML = `<b>${(a.verdict||'inconclusive').replace('_',' ')} · ` +
+            `${Math.round((a.confidence||0)*100)}%</b>${a.reasoning||'no reading'}` +
+            (a.scene ? `<div style="color:var(--muted);margin-top:5px">${a.scene}</div>` : '') +
+            (res.camera ? `<img src="${res.camera.url}?t=${Date.now()}">` : '');
+          row._checked = true; draw311();
+        }
+        el.appendChild(v);
+        b.textContent = 'Re-check';
+      }catch(err){ b.textContent = 'Failed — retry'; }
+      b.disabled = false;
+    };
+    el.appendChild(b);
+  }
+  box.appendChild(el);
+}
+
 document.getElementById('load311').addEventListener('click', async (e) => {
   const btn = e.target;
   btn.disabled = true; btn.textContent = 'Loading…';
@@ -442,7 +502,7 @@ document.getElementById('load311').addEventListener('click', async (e) => {
   box.innerHTML = '';
   try{
     const days = document.getElementById('days311').value;
-    const rows = await fetch('/api/311?limit=20&days=' + days).then(x => x.json());
+    const rows = await fetch('/api/311?limit=40&days=' + days).then(x => x.json());
 
     complaints = rows;
     if (!show311){                      // first load turns the layer on
@@ -452,68 +512,14 @@ document.getElementById('load311').addEventListener('click', async (e) => {
     }
     draw311();
 
-    if (!rows.length){
-      box.innerHTML = '<div class="c311">No complaints in that window with a ' +
-                      'camera pointed at them. Try a wider range.</div>';
-    }
-    for (const row of rows){
-      const cams = row.cameras || [];
-      const seer = cams.find(c => c.in_view);
-      const el = document.createElement('div');
-      el.className = 'c311';
-      el.id = 'c-' + row.unique_key;
-      el.innerHTML =
-        `<div class="t">${row.complaint_type}</div>` +
-        `<div class="m">${row.descriptor || ''}<br>${row.incident_address || ''}<br>` +
-        `${new Date(row.created_date).toLocaleString()}</div>` +
-        (seer
-          ? `<span class="badge see">IN VIEW</span><span class="badge">${seer.name}</span>` +
-            `<span class="badge">${seer.distance_m}m · ${seer.off_axis_deg}&deg; off-axis</span>`
-          : `<span class="badge blind">NO CAMERA POINTED AT IT</span>`);
-      if (seer){
-        const b = document.createElement('button');
-        b.className = 'go'; b.textContent = 'Verify with Gemini';
-        b.style.marginTop = '9px';
-        b.onclick = async () => {
-          b.disabled = true; b.textContent = 'Checking…';
-          try{
-            const res = await fetch('/api/verify', {
-              method:'POST', headers:{'Content-Type':'application/json'},
-              body: JSON.stringify({
-                latitude:+row.latitude, longitude:+row.longitude,
-                complaint_type:row.complaint_type,
-                descriptor:row.descriptor || '', address:row.incident_address || ''
-              })
-            }).then(x => x.json());
-            const v = document.createElement('div');
-            if (!res.verified){
-              // Say what actually went wrong rather than dressing a failure
-              // up as an "inconclusive" verdict.
-              v.className = 'verdict inconclusive';
-              v.innerHTML = `<b>could not check</b>${res.reason || 'unknown error'}` +
-                (res.error ? `<div style="color:var(--muted);margin-top:5px">${res.error}</div>` : '');
-            } else {
-              const a = res.assessment || {};
-              v.className = 'verdict ' + (a.verdict || 'inconclusive');
-              v.innerHTML = `<b>${(a.verdict||'inconclusive').replace('_',' ')} · ` +
-                `${Math.round((a.confidence||0)*100)}%</b>${a.reasoning||'no reading'}` +
-                (a.scene ? `<div style="color:var(--muted);margin-top:5px">${a.scene}</div>` : '') +
-                (res.camera ? `<img src="${res.camera.url}?t=${Date.now()}">` : '');
-            }
-            el.appendChild(v);
-            b.textContent = 'Re-check';
-          }catch(err){ b.textContent = 'Failed — retry'; }
-          b.disabled = false;
-        };
-        el.appendChild(b);
-      }
-      el.onclick = (ev) => {
-        if (ev.target.tagName === 'BUTTON') return;
-        map.setView([+row.latitude, +row.longitude], 16);
-      };
-      box.appendChild(el);
-    }
-  }catch(err){ box.innerHTML = '<div class="c311">Could not load 311.</div>'; }
+    box.innerHTML = rows.length
+      ? `<div class="hint311">${rows.length} complaints on the map — ` +
+        `<b>click a pin</b> to inspect and verify it.</div>`
+      : '<div class="hint311">No complaints in that window with a camera ' +
+        'pointed at them. Try a wider range.</div>';
+  }catch(err){
+    box.innerHTML = '<div class="hint311">Could not load 311.</div>';
+  }
   btn.disabled = false; btn.textContent = 'Reload complaints';
 });
 
