@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NYC Vision Agent — Manhattan</title>
+<title>Naina — Manhattan</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>
   :root{
@@ -31,7 +31,9 @@
   aside{background:var(--panel);border-left:1px solid var(--rule);
         display:flex;flex-direction:column;overflow:hidden;min-height:0}
   .hd{padding:16px 18px;border-bottom:1px solid var(--rule)}
-  h1{margin:0;font-size:15px;font-weight:700;letter-spacing:-.01em}
+  h1{margin:0;font-size:17px;font-weight:700;letter-spacing:-.01em;
+     display:flex;align-items:center;gap:8px}
+  h1 .eye{font-size:16px;line-height:1;filter:saturate(.9)}
   .sub{margin:5px 0 0;font-family:var(--mono);font-size:10.5px;
        color:var(--muted);letter-spacing:.05em;text-transform:uppercase}
   .scroll{overflow-y:auto;flex:1 1 0;min-height:0;padding:16px 18px;
@@ -154,7 +156,7 @@
   <div id="map"></div>
   <aside>
     <div class="hd">
-      <h1>NYC Vision Agent</h1>
+      <h1><span class="eye">👁</span> Naina</h1>
       <p class="sub">Manhattan · direction-aware</p>
     </div>
 
@@ -164,12 +166,12 @@
         <div class="totals">
           <div class="tile person" data-k="person"><span class="n" id="n-person">–</span><span class="l">People</span></div>
           <div class="tile car" data-k="car"><span class="n" id="n-car">–</span><span class="l">Cars</span></div>
-          <div class="tile c311 off" id="tile-311"><span class="n" id="n-311">–</span><span class="l">311</span></div>
+          <div class="tile c311 off" id="tile-311"><span class="n" id="n-311">–</span><span class="l">311 Complaints</span></div>
         </div>
       </div>
 
       <div>
-        <p class="sec-t">History</p>
+        <p class="sec-t">Timeline</p>
         <div class="slab">
           <svg id="spark" viewBox="0 0 340 52" preserveAspectRatio="none"></svg>
           <input type="range" id="scrub" min="0" max="0" value="0">
