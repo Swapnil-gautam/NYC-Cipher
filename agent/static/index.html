@@ -347,13 +347,16 @@ async function poll(){
       (age !== null && age !== undefined ? ` · ${age}s ago` : '') +
       (st.last_error ? ` · ERR ${st.last_error}` : '');
 
-    // Pull the full buffer so the scrubber can replay every sweep.
-    const all = await fetch('/api/cycles').then(x => x.json());
-    if (Array.isArray(all) && all.length &&
-        (all.length !== cycles.length ||
-         all[all.length-1].ts !== cycles[cycles.length-1]?.ts)){
+    // Full history once, then only what we're missing. The whole buffer is
+    // ~40KB per sweep, so re-fetching it every poll would re-download the
+    // entire evening and leave the map blank while it lands.
+    const since = cycles.length ? cycles[cycles.length-1].ts : 0;
+    const fresh = await fetch('/api/cycles' + (since ? '?since=' + since : ''))
+                        .then(x => x.json());
+
+    if (Array.isArray(fresh) && fresh.length){
       const atLive = viewing === null;
-      cycles = all;
+      cycles = since ? cycles.concat(fresh) : fresh;
       scrub.max = Math.max(cycles.length - 1, 0);
       if (atLive) scrub.value = scrub.max;
       render();
@@ -424,7 +427,10 @@ document.getElementById('load311').addEventListener('click', async (e) => {
 });
 
 (async function init(){
+  const status = document.getElementById('status');
+  status.innerHTML = '<span class="dot"></span>loading cameras…';
   cameras = await fetch('/api/cameras').then(r => r.json());
+  status.innerHTML = '<span class="dot"></span>loading history…';
   await poll();
   setInterval(poll, 15000);
 })();

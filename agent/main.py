@@ -360,10 +360,18 @@ def _ordered() -> List[Dict]:
 
 
 @app.get("/api/cycles")
-def api_cycles(limit: int = 400):
-    """Every buffered sweep, counts included, so the UI can scrub history
-    without refetching each one."""
-    return _ordered()[-limit:]
+def api_cycles(limit: int = 400, since: float = 0):
+    """Buffered sweeps, counts included, so the UI can scrub history.
+
+    `since` returns only sweeps newer than that timestamp. The full payload
+    grows by ~40KB per sweep, so the UI pulls everything once and then asks
+    only for what it is missing — otherwise polling re-downloads the whole
+    evening every few seconds.
+    """
+    rows = _ordered()
+    if since:
+        rows = [c for c in rows if c["ts"] > since]
+    return rows[-limit:]
 
 
 @app.get("/api/series")
