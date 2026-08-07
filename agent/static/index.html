@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NYC Vision Agent — Manhattan</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+  :root{
+    --bg:#0d1117; --panel:#151b23; --panel-2:#1c242e; --rule:#263039;
+    --ink:#e6edf3; --ink-2:#9fb0c0; --muted:#6b7d8f;
+    --person:#f0a94b; --bike:#4bc0a8; --car:#6f9ce8; --hot:#e8556d;
+    --mono:ui-monospace,"Cascadia Mono",Consolas,monospace;
+    --sans:system-ui,"Segoe UI",-apple-system,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);overflow:hidden}
+  /* Map takes every pixel it can; the panel is a fixed rail that scrolls
+     internally so it never steals height from the map. */
+  #app{display:grid;grid-template-columns:1fr 340px;height:100vh;
+       min-height:0;overflow:hidden}
+  #map{height:100%;min-height:0;background:#0d1117}
+
+  /* Stacked: give the map the clear majority, panel scrolls under it. */
+  @media(max-width:900px){
+    #app{grid-template-columns:1fr;grid-template-rows:68vh 32vh}
+    aside{border-left:none;border-top:1px solid var(--rule)}
+  }
+
+  aside{background:var(--panel);border-left:1px solid var(--rule);
+        display:flex;flex-direction:column;overflow:hidden;min-height:0}
+  .hd{padding:16px 18px;border-bottom:1px solid var(--rule)}
+  h1{margin:0;font-size:15px;font-weight:700;letter-spacing:-.01em}
+  .sub{margin:5px 0 0;font-family:var(--mono);font-size:10.5px;
+       color:var(--muted);letter-spacing:.05em;text-transform:uppercase}
+  .scroll{overflow-y:auto;flex:1 1 0;min-height:0;padding:16px 18px;
+          display:flex;flex-direction:column;gap:18px}
+  .scroll::-webkit-scrollbar{width:9px}
+  .scroll::-webkit-scrollbar-thumb{background:var(--rule);border-radius:5px}
+  .scroll::-webkit-scrollbar-track{background:transparent}
+  .hd{flex:0 0 auto}
+  .status{flex:0 0 auto}
+
+  .totals{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .tile{background:var(--panel-2);border:1px solid var(--rule);border-radius:5px;
+        padding:11px 12px;cursor:pointer;transition:border-color .15s,opacity .15s}
+  .tile:hover{border-color:var(--muted)}
+  .tile.off{opacity:.34}
+  .tile .n{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums;
+           line-height:1;display:block}
+  .tile .l{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;
+           text-transform:uppercase;color:var(--ink-2);display:block;margin-top:6px}
+  .tile.person .n{color:var(--person)} .tile.bicycle .n{color:var(--bike)}
+  .tile.car .n{color:var(--car)}
+
+  .sec-t{font-family:var(--mono);font-size:10px;letter-spacing:.13em;
+         text-transform:uppercase;color:var(--muted);margin:0 0 9px}
+  .slab{background:var(--panel-2);border:1px solid var(--rule);
+        border-radius:5px;padding:13px 14px}
+
+  input[type=range]{width:100%;accent-color:var(--person)}
+  .tline{display:flex;justify-content:space-between;font-family:var(--mono);
+         font-size:10px;color:var(--muted);margin-top:6px}
+
+  #spark{width:100%;height:52px;display:block}
+
+  button{font-family:var(--sans);font-size:12px;border-radius:5px;
+         border:1px solid var(--rule);background:var(--panel-2);color:var(--ink);
+         padding:7px 11px;cursor:pointer;transition:border-color .15s}
+  button:hover{border-color:var(--muted)}
+  button:disabled{opacity:.45;cursor:default}
+  button.go{background:var(--person);color:#1a1206;border-color:var(--person);
+            font-weight:600}
+
+  .c311{border:1px solid var(--rule);border-radius:5px;padding:11px 12px;
+        margin-bottom:8px;background:var(--panel-2);font-size:12.5px}
+  .c311 .t{font-weight:600;margin-bottom:3px}
+  .c311 .m{font-family:var(--mono);font-size:10.5px;color:var(--muted);
+           line-height:1.6;margin-bottom:8px}
+  .badge{display:inline-block;font-family:var(--mono);font-size:9.5px;
+         padding:2px 6px;border-radius:3px;letter-spacing:.05em;
+         background:#233; color:var(--ink-2);margin-right:5px}
+  .badge.see{background:#1f3a2e;color:#6ee7b7}
+  .badge.blind{background:#3a2320;color:#f0a08e}
+
+  .verdict{margin-top:9px;padding:9px 10px;border-radius:4px;
+           font-size:12px;line-height:1.5;border:1px solid var(--rule)}
+  .verdict.visible{background:#1f3a2e;border-color:#2f5c48}
+  .verdict.not_visible{background:#3a2320;border-color:#5c3630}
+  .verdict.inconclusive{background:#2a2f38}
+  .verdict b{font-family:var(--mono);font-size:10px;letter-spacing:.08em;
+             text-transform:uppercase;display:block;margin-bottom:4px}
+  .verdict img{width:100%;border-radius:3px;margin-top:8px;display:block}
+
+  .status{font-family:var(--mono);font-size:10px;color:var(--muted);
+          padding:10px 18px;border-top:1px solid var(--rule);line-height:1.6}
+  .dot{display:inline-block;width:6px;height:6px;border-radius:50%;
+       background:var(--muted);margin-right:5px;vertical-align:middle}
+  .dot.live{background:#4ade80}
+  .leaflet-popup-content-wrapper,.leaflet-popup-tip{
+       background:var(--panel-2);color:var(--ink)}
+  .leaflet-popup-content{font-family:var(--mono);font-size:11px;line-height:1.6}
+
+  /* hover readout on each camera */
+  .cam-tt{background:#0b1016;border:1px solid var(--rule);border-radius:5px;
+          box-shadow:0 6px 20px rgba(0,0,0,.55);padding:8px 10px;color:var(--ink);
+          font-family:var(--mono);font-size:11px;line-height:1.55;white-space:nowrap}
+  .cam-tt::before{border-top-color:var(--rule)}
+  .cam-tt .tt-name{display:block;font-weight:700;font-size:11px;
+                   margin-bottom:5px;max-width:230px;white-space:normal}
+  .cam-tt .tt-row{display:flex;align-items:center;gap:6px;
+                  font-variant-numeric:tabular-nums}
+  .cam-tt .tt-row i{width:7px;height:7px;border-radius:2px;display:inline-block}
+  .cam-tt .tt-dir{display:block;margin-top:5px;padding-top:5px;
+                  border-top:1px solid var(--rule);color:var(--muted);font-size:10px}
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="map"></div>
+  <aside>
+    <div class="hd">
+      <h1>NYC Vision Agent</h1>
+      <p class="sub">Manhattan · direction-aware</p>
+    </div>
+
+    <div class="scroll">
+      <div>
+        <p class="sec-t">Live counts — click to toggle layers</p>
+        <div class="totals">
+          <div class="tile person" data-k="person"><span class="n" id="n-person">–</span><span class="l">People</span></div>
+          <div class="tile bicycle" data-k="bicycle"><span class="n" id="n-bicycle">–</span><span class="l">Bikes</span></div>
+          <div class="tile car" data-k="car"><span class="n" id="n-car">–</span><span class="l">Cars</span></div>
+        </div>
+      </div>
+
+      <div>
+        <p class="sec-t">History</p>
+        <div class="slab">
+          <svg id="spark" viewBox="0 0 340 52" preserveAspectRatio="none"></svg>
+          <input type="range" id="scrub" min="0" max="0" value="0">
+          <div class="tline"><span id="t-start">—</span><span id="t-cur">live</span></div>
+        </div>
+      </div>
+
+      <div>
+        <p class="sec-t">311 — can a camera actually see it?</p>
+        <div style="display:flex;gap:7px;margin-bottom:10px">
+          <button id="load311">Load recent complaints</button>
+        </div>
+        <div id="list311"></div>
+      </div>
+    </div>
+
+    <div class="status" id="status"><span class="dot"></span>connecting…</div>
+  </aside>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const COLORS = {person:'#f0a94b', bicycle:'#4bc0a8', car:'#6f9ce8'};
+const active = {person:true, bicycle:true, car:true};
+let cameras = [], cycles = [], markers = new Map(), viewing = null;
+
+const map = L.map('map', {zoomControl:true, attributionControl:false})
+  .setView([40.758, -73.978], 12);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
+  {maxZoom:19}).addTo(map);
+
+const layer = L.layerGroup().addTo(map);
+
+function shownTotal(c){
+  let t = 0;
+  for (const k in active) if (active[k]) t += (c?.[k] || 0);
+  return t;
+}
+
+function dominant(c){
+  let best = null, n = -1;
+  for (const k in active) if (active[k] && (c?.[k]||0) > n) { n = c[k]; best = k; }
+  return best || 'car';
+}
+
+function draw(cycle){
+  layer.clearLayers();
+  markers.clear();
+  if (!cycle) return;
+  for (const cam of cameras){
+    const c = cycle.counts[cam.id];
+    if (!c) continue;
+    const t = shownTotal(c);
+    if (t === 0) continue;
+    const r = Math.min(4 + Math.sqrt(t) * 2.4, 20);
+    const m = L.circleMarker([cam.latitude, cam.longitude], {
+      radius: r, weight: 1.2, color: COLORS[dominant(c)],
+      fillColor: COLORS[dominant(c)], fillOpacity: .42
+    });
+    m.bindTooltip(
+      `<span class="tt-name">${cam.name}</span>` +
+      `<span class="tt-row"><i style="background:${COLORS.person}"></i>` +
+      `${c.person} people</span>` +
+      `<span class="tt-row"><i style="background:${COLORS.bicycle}"></i>` +
+      `${c.bicycle} bikes</span>` +
+      `<span class="tt-row"><i style="background:${COLORS.car}"></i>` +
+      `${c.car} cars</span>` +
+      `<span class="tt-dir">facing ${cam.dir || 'unknown'}</span>`,
+      {direction:'top', offset:[0,-4], opacity:1, className:'cam-tt', sticky:true}
+    );
+
+    m.bindPopup(
+      `<b>${cam.name}</b><br>` +
+      `people ${c.person} · bikes ${c.bicycle} · cars ${c.car}<br>` +
+      `facing ${cam.dir || 'unknown'}` +
+      (cam.dir_source ? ` <span style="opacity:.6">(${cam.dir_source})</span>` : '') +
+      `<br><img src="${cam.url}?t=${Date.now()}" style="width:230px;margin-top:6px;border-radius:3px">`
+    );
+
+    m.on('mouseover', function(){ this.setStyle({fillOpacity:.8, weight:2.2}); });
+    m.on('mouseout',  function(){ this.setStyle({fillOpacity:.42, weight:1.2}); });
+    m.addTo(layer);
+    markers.set(cam.id, m);
+  }
+}
+
+function paintTotals(cycle){
+  for (const k of ['person','bicycle','car'])
+    document.getElementById('n-'+k).textContent = cycle ? (cycle.totals[k] ?? 0) : '–';
+}
+
+function sparkline(){
+  const svg = document.getElementById('spark');
+  svg.innerHTML = '';
+  if (cycles.length < 2) return;
+  const vals = cycles.map(c => shownTotal(c.totals));
+  const max = Math.max(...vals, 1);
+  const W = 340, H = 52, step = W / Math.max(cycles.length - 1, 1);
+  const pts = vals.map((v,i) => [i*step, H - 3 - (v/max)*(H-8)]);
+  const d = pts.map((p,i) => (i?'L':'M') + p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join(' ');
+  svg.insertAdjacentHTML('beforeend',
+    `<path d="${d} L ${W} ${H} L 0 ${H} Z" fill="rgba(240,169,75,.13)"/>` +
+    `<path d="${d}" fill="none" stroke="#f0a94b" stroke-width="1.6"/>`);
+  const idx = viewing === null ? cycles.length-1 : viewing;
+  if (pts[idx]) svg.insertAdjacentHTML('beforeend',
+    `<circle cx="${pts[idx][0].toFixed(1)}" cy="${pts[idx][1].toFixed(1)}" r="3" fill="#f0a94b"/>`);
+}
+
+function hhmm(ts){
+  return new Date(ts*1000).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+}
+
+function render(){
+  const cyc = cycles.length ? cycles[viewing === null ? cycles.length-1 : viewing] : null;
+  draw(cyc); paintTotals(cyc); sparkline();
+  document.getElementById('t-start').textContent = cycles.length ? hhmm(cycles[0].ts) : '—';
+  document.getElementById('t-cur').textContent =
+    !cyc ? 'live' : (viewing === null ? 'live · ' + hhmm(cyc.ts) : hhmm(cyc.ts));
+}
+
+document.querySelectorAll('.tile').forEach(el => {
+  el.addEventListener('click', () => {
+    const k = el.dataset.k;
+    active[k] = !active[k];
+    el.classList.toggle('off', !active[k]);
+    render();
+  });
+});
+
+const scrub = document.getElementById('scrub');
+scrub.addEventListener('input', () => {
+  viewing = (+scrub.value === cycles.length-1) ? null : +scrub.value;
+  render();
+});
+
+async function poll(){
+  try{
+    const st = await fetch('/healthz').then(x => x.json());
+    const n = st.cycles_ingested ?? 0;
+    const age = st.seconds_since_last_sweep;
+    const edge = (st.edge || '').split(':').pop() || 'no edge yet';
+    document.getElementById('status').innerHTML =
+      `<span class="${n > 0 ? 'dot live' : 'dot'}"></span>` +
+      `${n} sweep${n === 1 ? '' : 's'} · ${edge}` +
+      (age !== null && age !== undefined ? ` · ${age}s ago` : '') +
+      (st.last_error ? ` · ERR ${st.last_error}` : '');
+
+    // Pull the full buffer so the scrubber can replay every sweep.
+    const all = await fetch('/api/cycles').then(x => x.json());
+    if (Array.isArray(all) && all.length &&
+        (all.length !== cycles.length ||
+         all[all.length-1].ts !== cycles[cycles.length-1]?.ts)){
+      const atLive = viewing === null;
+      cycles = all;
+      scrub.max = Math.max(cycles.length - 1, 0);
+      if (atLive) scrub.value = scrub.max;
+      render();
+    }
+  }catch(e){
+    document.getElementById('status').innerHTML =
+      `<span class="dot"></span>offline — retrying`;
+  }
+}
+
+document.getElementById('load311').addEventListener('click', async (e) => {
+  const btn = e.target;
+  btn.disabled = true; btn.textContent = 'Loading…';
+  const box = document.getElementById('list311');
+  box.innerHTML = '';
+  try{
+    const rows = await fetch('/api/311?limit=12').then(x => x.json());
+    for (const row of rows){
+      const cams = row.cameras || [];
+      const seer = cams.find(c => c.in_view);
+      const el = document.createElement('div');
+      el.className = 'c311';
+      el.innerHTML =
+        `<div class="t">${row.complaint_type}</div>` +
+        `<div class="m">${row.descriptor || ''}<br>${row.incident_address || ''}<br>` +
+        `${new Date(row.created_date).toLocaleString()}</div>` +
+        (seer
+          ? `<span class="badge see">IN VIEW</span><span class="badge">${seer.name}</span>` +
+            `<span class="badge">${seer.distance_m}m · ${seer.off_axis_deg}&deg; off-axis</span>`
+          : `<span class="badge blind">NO CAMERA POINTED AT IT</span>`);
+      if (seer){
+        const b = document.createElement('button');
+        b.className = 'go'; b.textContent = 'Verify with Gemini';
+        b.style.marginTop = '9px';
+        b.onclick = async () => {
+          b.disabled = true; b.textContent = 'Checking…';
+          try{
+            const res = await fetch('/api/verify', {
+              method:'POST', headers:{'Content-Type':'application/json'},
+              body: JSON.stringify({
+                latitude:+row.latitude, longitude:+row.longitude,
+                complaint_type:row.complaint_type,
+                descriptor:row.descriptor || '', address:row.incident_address || ''
+              })
+            }).then(x => x.json());
+            const a = res.assessment || {};
+            const v = document.createElement('div');
+            v.className = 'verdict ' + (a.verdict || 'inconclusive');
+            v.innerHTML = `<b>${(a.verdict||'inconclusive').replace('_',' ')} · ` +
+              `${Math.round((a.confidence||0)*100)}%</b>${a.reasoning||'no reading'}` +
+              (a.scene ? `<div style="color:var(--muted);margin-top:5px">${a.scene}</div>` : '') +
+              (res.camera ? `<img src="${res.camera.url}?t=${Date.now()}">` : '');
+            el.appendChild(v);
+            b.textContent = 'Re-check';
+          }catch(err){ b.textContent = 'Failed — retry'; }
+          b.disabled = false;
+        };
+        el.appendChild(b);
+      }
+      el.onclick = (ev) => {
+        if (ev.target.tagName === 'BUTTON') return;
+        map.setView([+row.latitude, +row.longitude], 16);
+      };
+      box.appendChild(el);
+    }
+  }catch(err){ box.innerHTML = '<div class="c311">Could not load 311.</div>'; }
+  btn.disabled = false; btn.textContent = 'Reload complaints';
+});
+
+(async function init(){
+  cameras = await fetch('/api/cameras').then(r => r.json());
+  await poll();
+  setInterval(poll, 15000);
+})();
+</script>
+</body>
+</html>

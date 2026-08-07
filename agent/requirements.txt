@@ -1,0 +1,13 @@
+# Cloud Run service only — detection runs at the edge, so no torch here.
+# Keeps the image small and cold starts fast.
+
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+pydantic==2.10.4
+requests==2.32.3
+
+# Gemini — same package covers ADC/Vertex on Cloud Run and API-key auth locally
+google-genai==1.2.0
+
+# optional sweep snapshots; harmless if GCS_BUCKET is unset
+google-cloud-storage==2.19.0

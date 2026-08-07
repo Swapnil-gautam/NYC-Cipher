@@ -19,3 +19,13 @@ __pycache__/
 Thumbs.db
 Desktop.ini
 .DS_Store
+
+# Collector output - frames are large and regenerable
+collector/data/
+collector/*.log
+agent/yolov8n.pt
+*.pt
+agent/*.log
+agent/*.err
+collector/*.out
+collector/*.err
