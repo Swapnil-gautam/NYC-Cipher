@@ -235,11 +235,45 @@ def gemini_verify(frame: bytes, complaint_type: str, descriptor: str,
 
 SOCRATA_311 = "https://data.cityofnewyork.us/resource/erm2-nwe9.json"
 
+# Complaints a street camera could plausibly settle. 311 carries hundreds of
+# types, but most are indoors, administrative, or about things no camera can
+# see (noise, food poisoning, heat/hot water). Asking Gemini about those wastes
+# a call and produces "inconclusive" every time.
+VERIFIABLE_TYPES = [
+    "Street Condition",
+    "Sidewalk Condition",
+    "Highway Condition",
+    "Curb Condition",
+    "Illegal Parking",
+    "Blocked Driveway",
+    "Derelict Vehicles",
+    "Abandoned Vehicle",
+    "Street Light Condition",
+    "Traffic Signal Condition",
+    "Street Sign - Damaged",
+    "Street Sign - Missing",
+    "Damaged Tree",
+    "Dead/Dying Tree",
+    "Overgrown Tree/Branches",
+    "Dirty Condition",
+    "Sanitation Condition",
+    "Missed Collection",
+    "Encampment",
+    "Homeless Person Assistance",
+    "Construction Lower Manhattan",
+    "Root/Sewer/Sidewalk Condition",
+    "Traffic",
+]
 
-def recent_311(limit: int = 25, complaint: Optional[str] = None) -> List[Dict]:
+
+def recent_311(limit: int = 25, complaint: Optional[str] = None,
+               verifiable_only: bool = True) -> List[Dict]:
     where = ["borough='MANHATTAN'", "latitude IS NOT NULL"]
     if complaint:
         where.append("complaint_type='%s'" % complaint.replace("'", "''"))
+    elif verifiable_only:
+        quoted = ",".join("'%s'" % t.replace("'", "''") for t in VERIFIABLE_TYPES)
+        where.append(f"complaint_type in ({quoted})")
     r = requests.get(SOCRATA_311, timeout=30, params={
         "$where": " AND ".join(where),
         "$order": "created_date DESC",
@@ -342,17 +376,40 @@ def api_series(camera_id: Optional[str] = None):
 
 
 @app.get("/api/311")
-def api_311(limit: int = 25, complaint_type: Optional[str] = None):
+def api_311(limit: int = 25, complaint_type: Optional[str] = None,
+            in_view_only: bool = True, verifiable_only: bool = True):
+    """Recent Manhattan complaints a camera can actually settle.
+
+    By default this returns only complaints that are (a) of a type a street
+    camera could plausibly show and (b) inside the cone of a camera whose
+    heading we know. A complaint nobody can see is not actionable, and asking
+    the model about it just burns a call.
+    """
     try:
-        rows = recent_311(limit=limit, complaint=complaint_type)
+        # Over-fetch: most rows fall away once we require a camera pointed at
+        # them, so ask for more than we intend to return.
+        raw = recent_311(limit=limit * 8 if in_view_only else limit,
+                         complaint=complaint_type,
+                         verifiable_only=verifiable_only)
     except Exception as e:
         raise HTTPException(502, f"311 fetch failed: {e}")
-    for r in rows:
+
+    out, considered = [], 0
+    for r in raw:
+        considered += 1
         try:
-            r["cameras"] = cameras_that_can_see(float(r["latitude"]), float(r["longitude"]))
+            r["cameras"] = cameras_that_can_see(float(r["latitude"]),
+                                                float(r["longitude"]))
         except Exception:
             r["cameras"] = []
-    return rows
+        if in_view_only and not any(c["in_view"] for c in r["cameras"]):
+            continue
+        out.append(r)
+        if len(out) >= limit:
+            break
+
+    STATE["last_311_considered"] = considered
+    return out
 
 
 class VerifyRequest(BaseModel):
