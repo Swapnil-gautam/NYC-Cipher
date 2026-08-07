@@ -188,24 +188,37 @@ def gemini_verify(frame: bytes, complaint_type: str, descriptor: str,
         f"Descriptor: {descriptor}\n"
         f"Reported near: {address}\n"
         f"What to look for: {LOOK_FOR.get(complaint_type, 'the reported condition')}\n\n"
-        "IMPORTANT — how to judge this:\n"
-        "* We have already established this camera is pointed at the reported "
-        "location. Do NOT try to identify the street address, house number, or "
-        "which specific driveway is which. You cannot, and you don't need to.\n"
-        "* Your only job: is the described KIND of condition visible anywhere in "
-        "this view? Answer about the scene as a whole.\n"
-        "* 'visible' means you can see the condition. 'not_visible' means the "
-        "view is clear enough to judge and the condition is not present — that "
-        "is a useful, confident answer, not a failure.\n"
-        "* Reserve 'inconclusive' for when the frame itself defeats you: too "
-        "dark, blocked, blurred, or the relevant area is out of shot. Do not use "
-        "it merely because you cannot pinpoint an address.\n\n"
-        "The image is a 352x240 municipal camera still, often wet or at night. "
-        "Judge what is genuinely there; do not speculate about detail you cannot "
-        "resolve.\n\n"
-        "Reply as strict JSON with keys: verdict (one of 'visible', "
-        "'not_visible', 'inconclusive'), confidence (0-1), reasoning (<=30 "
-        "words), scene (<=20 words describing the frame)."
+
+        "Work through this in order.\n\n"
+
+        "STEP 1 — Is the image usable?\n"
+        "Usable means you can make out the roadway and vehicles well enough to "
+        "tell parked from moving, or see the sidewalk and street furniture. A "
+        "352x240 night frame in rain is usually STILL USABLE — dark, wet and "
+        "grainy is normal for these cameras, not disqualifying. Mark it unusable "
+        "only if it is genuinely defeated: near-black, whited out, lens fully "
+        "obscured, a test pattern, or an error screen.\n\n"
+
+        "STEP 2 — Decide.\n"
+        "If the image IS usable you MUST answer 'visible' or 'not_visible'. "
+        "You are judging whether the described KIND of condition appears "
+        "anywhere in this view.\n"
+        "* We have already established this camera points at the reported "
+        "location. Do NOT try to read house numbers or work out which specific "
+        "driveway is which — you cannot, and you do not need to.\n"
+        "* 'not_visible' is a confident, useful finding: the view is clear and "
+        "the condition is not there. This is the single most common correct "
+        "answer, because most complaints have already been resolved. Say it "
+        "plainly rather than hedging.\n"
+        "* Only return 'inconclusive' when STEP 1 failed. Never use it because "
+        "you are unsure of an address, uncertain about a small detail, or "
+        "because the image is merely low quality.\n\n"
+
+        "Reply as strict JSON with keys: image_usable (boolean), verdict (one "
+        "of 'visible', 'not_visible', 'inconclusive'), confidence (0-1), "
+        "reasoning (<=30 words, say what you actually saw), scene (<=20 words "
+        "describing the frame). If image_usable is true, verdict must not be "
+        "'inconclusive'."
     )
 
     # Model availability differs between AI Studio and Vertex, and between
@@ -238,6 +251,12 @@ def gemini_verify(frame: bytes, complaint_type: str, descriptor: str,
     MODEL_STATE["resolved"] = used
     try:
         out = json.loads(resp.text)
+        # The model occasionally says the frame is fine and still hedges.
+        # A usable image has to produce a real answer.
+        if out.get("image_usable") and out.get("verdict") == "inconclusive":
+            out["verdict"] = "not_visible"
+            out["reasoning"] = (out.get("reasoning") or "").rstrip(".") + \
+                " (frame judged usable, so read as not present)"
         out["model"] = used
         return out
     except Exception:
