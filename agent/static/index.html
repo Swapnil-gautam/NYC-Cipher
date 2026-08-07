@@ -63,6 +63,18 @@
   .tline{display:flex;justify-content:space-between;font-family:var(--mono);
          font-size:10px;color:var(--muted);margin-top:6px}
 
+  .playbar{display:flex;align-items:center;gap:11px;margin-top:11px;
+           padding-top:11px;border-top:1px solid var(--rule)}
+  #play{flex:0 0 auto;min-width:78px;font-family:var(--mono);font-size:11px;
+        letter-spacing:.04em;padding:6px 10px}
+  #play.on{background:var(--person);color:#1a1206;border-color:var(--person);
+           font-weight:700}
+  .nowbox{display:flex;flex-direction:column;line-height:1.35;min-width:0}
+  .nowts{font-family:var(--mono);font-size:13px;color:var(--ink);
+         font-variant-numeric:tabular-nums;font-weight:600}
+  .nowidx{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;
+          text-transform:uppercase;color:var(--muted)}
+
   #spark{width:100%;height:52px;display:block}
 
   button{font-family:var(--sans);font-size:12px;border-radius:5px;
@@ -140,7 +152,14 @@
         <div class="slab">
           <svg id="spark" viewBox="0 0 340 52" preserveAspectRatio="none"></svg>
           <input type="range" id="scrub" min="0" max="0" value="0">
-          <div class="tline"><span id="t-start">—</span><span id="t-cur">live</span></div>
+          <div class="tline"><span id="t-start">—</span><span id="t-end">—</span></div>
+          <div class="playbar">
+            <button id="play" title="Replay the evening">▶&nbsp; Play</button>
+            <div class="nowbox">
+              <span class="nowts" id="t-cur">—</span>
+              <span class="nowidx" id="t-idx"></span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -248,14 +267,57 @@ function sparkline(){
 function hhmm(ts){
   return new Date(ts*1000).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
 }
+function hhmmss(ts){
+  return new Date(ts*1000).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit',
+                                                   second:'2-digit'});
+}
+function ago(ts){
+  const s = Math.max(0, Math.round(Date.now()/1000 - ts));
+  if (s < 60) return s + 's ago';
+  const m = Math.floor(s/60);
+  return m < 60 ? m + 'm ago' : Math.floor(m/60) + 'h ' + (m%60) + 'm ago';
+}
 
 function render(){
-  const cyc = cycles.length ? cycles[viewing === null ? cycles.length-1 : viewing] : null;
+  const idx = cycles.length ? (viewing === null ? cycles.length-1 : viewing) : -1;
+  const cyc = idx >= 0 ? cycles[idx] : null;
   draw(cyc); paintTotals(cyc); sparkline();
+
   document.getElementById('t-start').textContent = cycles.length ? hhmm(cycles[0].ts) : '—';
-  document.getElementById('t-cur').textContent =
-    !cyc ? 'live' : (viewing === null ? 'live · ' + hhmm(cyc.ts) : hhmm(cyc.ts));
+  document.getElementById('t-end').textContent =
+    cycles.length ? hhmm(cycles[cycles.length-1].ts) : '—';
+  document.getElementById('t-cur').textContent = cyc ? hhmmss(cyc.ts) : '—';
+  document.getElementById('t-idx').textContent = !cyc ? '' :
+    (viewing === null ? 'live · ' + ago(cyc.ts)
+                      : 'sweep ' + (idx+1) + ' of ' + cycles.length);
 }
+
+/* ---- playback ---- */
+let timer = null;
+const playBtn = document.getElementById('play');
+
+function setPlaying(on){
+  if (timer){ clearInterval(timer); timer = null; }
+  playBtn.classList.toggle('on', on);
+  playBtn.innerHTML = on ? '❚❚&nbsp; Pause' : '▶&nbsp; Play';
+  if (!on) return;
+  if (cycles.length < 2){ setPlaying(false); return; }
+  // restart from the beginning when replaying from the live edge
+  if (viewing === null || viewing >= cycles.length-1) viewing = 0;
+  scrub.value = viewing; render();
+  timer = setInterval(() => {
+    if (viewing === null || viewing >= cycles.length-1){
+      viewing = null;             // land on live and stop
+      scrub.value = Math.max(cycles.length-1, 0);
+      render(); setPlaying(false); return;
+    }
+    viewing += 1;
+    scrub.value = viewing;
+    render();
+  }, 700);
+}
+
+playBtn.addEventListener('click', () => setPlaying(!timer));
 
 document.querySelectorAll('.tile').forEach(el => {
   el.addEventListener('click', () => {
@@ -268,6 +330,7 @@ document.querySelectorAll('.tile').forEach(el => {
 
 const scrub = document.getElementById('scrub');
 scrub.addEventListener('input', () => {
+  if (timer) setPlaying(false);          // dragging takes over from playback
   viewing = (+scrub.value === cycles.length-1) ? null : +scrub.value;
   render();
 });
