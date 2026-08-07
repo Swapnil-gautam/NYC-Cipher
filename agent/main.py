@@ -258,22 +258,10 @@ SOCRATA_311 = "https://data.cityofnewyork.us/resource/erm2-nwe9.json"
 # reason too: identifying individuals from municipal cameras is not something
 # this should be doing.
 VERIFIABLE_TYPES = [
-    # vehicles — unambiguous at this resolution
-    "Illegal Parking",
-    "Blocked Driveway",
-    "Derelict Vehicles",
-    "Abandoned Vehicle",
-    # roadway state — fills a large part of the frame
-    "Street Condition",
-    "Highway Condition",
-    "Traffic",
-    # lighting and signals — visible as on/off, especially after dark
-    "Street Light Condition",
-    "Traffic Signal Condition",
-    # large fixed objects
-    "Damaged Tree",
-    "Dead/Dying Tree",
-    "Overgrown Tree/Branches",
+    "Illegal Parking",          # vehicle-sized, unambiguous
+    "Blocked Driveway",         # vehicle across a curb cut
+    "Damaged Tree",             # large fixed object
+    "Street Light Condition",   # reads as on/off, especially after dark
 ]
 
 
@@ -314,8 +302,12 @@ LOOK_FOR = {
 
 
 def recent_311(limit: int = 25, complaint: Optional[str] = None,
-               verifiable_only: bool = True) -> List[Dict]:
+               verifiable_only: bool = True, days: float = 1.0) -> List[Dict]:
     where = ["borough='MANHATTAN'", "latitude IS NOT NULL"]
+    if days:
+        cutoff = time.strftime("%Y-%m-%dT%H:%M:%S",
+                               time.localtime(time.time() - days * 86400))
+        where.append(f"created_date > '{cutoff}'")
     if complaint:
         where.append("complaint_type='%s'" % complaint.replace("'", "''"))
     elif verifiable_only:
@@ -432,7 +424,8 @@ def api_series(camera_id: Optional[str] = None):
 
 @app.get("/api/311")
 def api_311(limit: int = 25, complaint_type: Optional[str] = None,
-            in_view_only: bool = True, verifiable_only: bool = True):
+            in_view_only: bool = True, verifiable_only: bool = True,
+            days: float = 1.0):
     """Recent Manhattan complaints a camera can actually settle.
 
     By default this returns only complaints that are (a) of a type a street
@@ -445,7 +438,8 @@ def api_311(limit: int = 25, complaint_type: Optional[str] = None,
         # them, so ask for more than we intend to return.
         raw = recent_311(limit=limit * 8 if in_view_only else limit,
                          complaint=complaint_type,
-                         verifiable_only=verifiable_only)
+                         verifiable_only=verifiable_only,
+                         days=min(max(days, 0.04), 31.0))   # cap at one month
     except Exception as e:
         raise HTTPException(502, f"311 fetch failed: {e}")
 

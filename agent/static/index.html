@@ -53,6 +53,22 @@
            text-transform:uppercase;color:var(--ink-2);display:block;margin-top:6px}
   .tile.person .n{color:var(--person)} .tile.bicycle .n{color:var(--bike)}
   .tile.car .n{color:var(--car)}
+  .tile.c311 .n{color:var(--hot)}
+  .totals{grid-template-columns:repeat(3,1fr)}
+
+  .range311{display:flex;align-items:center;gap:8px;margin-bottom:9px}
+  .range311 label{font-family:var(--mono);font-size:10px;letter-spacing:.08em;
+                  text-transform:uppercase;color:var(--muted)}
+  .range311 select{flex:1;background:var(--panel-2);color:var(--ink);
+                   border:1px solid var(--rule);border-radius:5px;
+                   padding:6px 8px;font-family:var(--mono);font-size:11px}
+
+  /* 311 pin on the map */
+  .pin311{background:none;border:none}
+  .pin311 span{display:block;width:13px;height:13px;border-radius:50% 50% 50% 0;
+               transform:rotate(-45deg);background:var(--hot);
+               border:1.5px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.6)}
+  .pin311.checked span{background:#4ade80}
 
   .sec-t{font-family:var(--mono);font-size:10px;letter-spacing:.13em;
          text-transform:uppercase;color:var(--muted);margin:0 0 9px}
@@ -143,6 +159,7 @@
         <div class="totals">
           <div class="tile person" data-k="person"><span class="n" id="n-person">–</span><span class="l">People</span></div>
           <div class="tile car" data-k="car"><span class="n" id="n-car">–</span><span class="l">Cars</span></div>
+          <div class="tile c311 off" id="tile-311"><span class="n" id="n-311">–</span><span class="l">311</span></div>
         </div>
       </div>
 
@@ -164,8 +181,19 @@
 
       <div>
         <p class="sec-t">311 — can a camera actually see it?</p>
+        <div class="range311">
+          <label for="days311">Reported within</label>
+          <select id="days311">
+            <!-- NYC 311 publishes with ~2 days of lag, so shorter windows
+                 are reliably empty. Start at 3 days. -->
+            <option value="3">last 3 days</option>
+            <option value="7" selected>last week</option>
+            <option value="14">last 2 weeks</option>
+            <option value="30">last month</option>
+          </select>
+        </div>
         <div style="display:flex;gap:7px;margin-bottom:10px">
-          <button id="load311">Load recent complaints</button>
+          <button id="load311" class="go">Load complaints</button>
         </div>
         <div id="list311"></div>
       </div>
@@ -189,6 +217,45 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
   {maxZoom:19}).addTo(map);
 
 const layer = L.layerGroup().addTo(map);
+const layer311 = L.layerGroup();          // added only when the 311 tile is on
+
+let complaints = [], show311 = false;
+
+function draw311(){
+  layer311.clearLayers();
+  for (const c of complaints){
+    const lat = +c.latitude, lon = +c.longitude;
+    if (!lat || !lon) continue;
+    const seer = (c.cameras || []).find(x => x.in_view);
+    const m = L.marker([lat, lon], {
+      icon: L.divIcon({className:'pin311' + (c._checked ? ' checked' : ''),
+                       html:'<span></span>', iconSize:[13,13],
+                       iconAnchor:[6,12]})
+    });
+    m.bindTooltip(
+      `<span class="tt-name">${c.complaint_type}</span>` +
+      `<span class="tt-row">${c.descriptor || ''}</span>` +
+      `<span class="tt-dir">${c.incident_address || ''}<br>` +
+      `${new Date(c.created_date).toLocaleString()}` +
+      (seer ? `<br>seen by ${seer.name}` : '') + `</span>`,
+      {direction:'top', offset:[0,-10], opacity:1, className:'cam-tt'}
+    );
+    m.on('click', () => {
+      const card = document.getElementById('c-' + c.unique_key);
+      if (card){ card.scrollIntoView({behavior:'smooth', block:'center'});
+                 card.style.borderColor = 'var(--hot)'; }
+    });
+    m.addTo(layer311);
+  }
+  document.getElementById('n-311').textContent = complaints.length || '–';
+}
+
+document.getElementById('tile-311').addEventListener('click', () => {
+  show311 = !show311;
+  document.getElementById('tile-311').classList.toggle('off', !show311);
+  if (show311){ layer311.addTo(map); draw311(); }
+  else { map.removeLayer(layer311); }
+});
 
 function shownTotal(c){
   let t = 0;
@@ -374,12 +441,27 @@ document.getElementById('load311').addEventListener('click', async (e) => {
   const box = document.getElementById('list311');
   box.innerHTML = '';
   try{
-    const rows = await fetch('/api/311?limit=12').then(x => x.json());
+    const days = document.getElementById('days311').value;
+    const rows = await fetch('/api/311?limit=20&days=' + days).then(x => x.json());
+
+    complaints = rows;
+    if (!show311){                      // first load turns the layer on
+      show311 = true;
+      document.getElementById('tile-311').classList.remove('off');
+      layer311.addTo(map);
+    }
+    draw311();
+
+    if (!rows.length){
+      box.innerHTML = '<div class="c311">No complaints in that window with a ' +
+                      'camera pointed at them. Try a wider range.</div>';
+    }
     for (const row of rows){
       const cams = row.cameras || [];
       const seer = cams.find(c => c.in_view);
       const el = document.createElement('div');
       el.className = 'c311';
+      el.id = 'c-' + row.unique_key;
       el.innerHTML =
         `<div class="t">${row.complaint_type}</div>` +
         `<div class="m">${row.descriptor || ''}<br>${row.incident_address || ''}<br>` +
