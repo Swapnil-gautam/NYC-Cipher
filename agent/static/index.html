@@ -142,7 +142,6 @@
         <p class="sec-t">Live counts — click to toggle layers</p>
         <div class="totals">
           <div class="tile person" data-k="person"><span class="n" id="n-person">–</span><span class="l">People</span></div>
-          <div class="tile bicycle" data-k="bicycle"><span class="n" id="n-bicycle">–</span><span class="l">Bikes</span></div>
           <div class="tile car" data-k="car"><span class="n" id="n-car">–</span><span class="l">Cars</span></div>
         </div>
       </div>
@@ -179,7 +178,9 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
 const COLORS = {person:'#f0a94b', bicycle:'#4bc0a8', car:'#6f9ce8'};
-const active = {person:true, bicycle:true, car:true};
+// Bikes are still collected and shown per-camera on hover, but they're not a
+// headline layer: at 352x240 in rain the citywide count is 1-4, which is noise.
+const active = {person:true, car:true};
 let cameras = [], cycles = [], markers = new Map(), viewing = null;
 
 const map = L.map('map', {zoomControl:true, attributionControl:false})
@@ -243,7 +244,7 @@ function draw(cycle){
 }
 
 function paintTotals(cycle){
-  for (const k of ['person','bicycle','car'])
+  for (const k of ['person','car'])
     document.getElementById('n-'+k).textContent = cycle ? (cycle.totals[k] ?? 0) : '–';
 }
 
