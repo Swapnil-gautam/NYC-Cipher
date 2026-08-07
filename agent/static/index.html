@@ -274,7 +274,7 @@ scrub.addEventListener('input', () => {
 
 async function poll(){
   try{
-    const st = await fetch('/healthz').then(x => x.json());
+    const st = await fetch('/api/health').then(x => x.json());
     const n = st.cycles_ingested ?? 0;
     const age = st.seconds_since_last_sweep;
     const edge = (st.edge || '').split(':').pop() || 'no edge yet';

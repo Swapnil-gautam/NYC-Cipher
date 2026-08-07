@@ -254,6 +254,7 @@ def api_ingest(sweep: Sweep, x_ingest_token: str = Header(default="")):
     return {"ok": True, "buffered": len(CYCLES)}
 
 
+@app.get("/api/health")
 @app.get("/healthz")
 def healthz():
     age = None
@@ -335,10 +336,25 @@ def api_verify(req: VerifyRequest):
         return {"verified": False, "reason": "camera frame unavailable",
                 "camera": best, "cameras": cams}
 
+    # Surface the real reason rather than a bare 500 — on Cloud Run the usual
+    # causes are aiplatform.googleapis.com not enabled, or the service account
+    # missing roles/aiplatform.user, and both are one command to fix.
+    try:
+        assessment = gemini_verify(frame, req.complaint_type,
+                                   req.descriptor, req.address)
+    except Exception as e:
+        STATE["last_error"] = f"gemini: {type(e).__name__}: {e}"
+        return {"verified": False, "camera": best, "cameras": cams,
+                "reason": "model call failed",
+                "error": f"{type(e).__name__}: {e}"[:600],
+                "auth_mode": "vertex" if os.environ.get(
+                    "GOOGLE_GENAI_USE_VERTEXAI", "").lower() in ("1", "true")
+                    else "api-key",
+                "model": os.environ.get("GEMINI_MODEL", "gemini-3.5-flash"),
+                "checked_at": time.time()}
+
     return {"verified": True, "camera": best, "cameras": cams,
-            "assessment": gemini_verify(frame, req.complaint_type,
-                                        req.descriptor, req.address),
-            "checked_at": time.time()}
+            "assessment": assessment, "checked_at": time.time()}
 
 
 app.mount("/", StaticFiles(directory=str(HERE / "static"), html=True), name="static")
