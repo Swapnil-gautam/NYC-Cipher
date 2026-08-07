@@ -1,13 +1,17 @@
 # Cloud Run service only — detection runs at the edge, so no torch here.
 # Keeps the image small and cold starts fast.
+#
+# Floors, not exact pins: these are the versions this code was tested against
+# locally, and the google-genai client API used in main.py (genai.Client with
+# vertexai=True, types.Part.from_bytes) needs 2.x — an older pin breaks it.
 
-fastapi==0.115.6
-uvicorn[standard]==0.34.0
-pydantic==2.10.4
-requests==2.32.3
+fastapi>=0.111.0
+uvicorn[standard]>=0.30.1
+pydantic>=2.13.4
+requests>=2.32.0
 
 # Gemini — same package covers ADC/Vertex on Cloud Run and API-key auth locally
-google-genai==1.2.0
+google-genai>=2.17.0
 
 # optional sweep snapshots; harmless if GCS_BUCKET is unset
-google-cloud-storage==2.19.0
+google-cloud-storage>=2.19.0
