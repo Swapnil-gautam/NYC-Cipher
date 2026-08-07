@@ -12,7 +12,8 @@ import sys
 
 import requests
 
-SWEEPS = pathlib.Path(__file__).parent / "data" / "sweeps.jsonl"
+SWEEPS = pathlib.Path(__file__).parent / "data" / os.environ.get(
+    "SWEEPS_FILE", "sweeps.jsonl")
 URL = os.environ.get("INGEST_URL", "http://127.0.0.1:8099/api/ingest")
 TOKEN = os.environ.get("INGEST_TOKEN", "")
 

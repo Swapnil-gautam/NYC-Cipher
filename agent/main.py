@@ -183,13 +183,26 @@ def gemini_verify(frame: bytes, complaint_type: str, descriptor: str,
         client = genai.Client(api_key=key)
 
     prompt = (
-        "You are verifying a NYC 311 complaint against a live traffic-camera frame.\n"
+        "You are triaging a NYC 311 complaint using a live traffic-camera frame.\n\n"
         f"Complaint type: {complaint_type}\n"
         f"Descriptor: {descriptor}\n"
-        f"Reported near: {address}\n\n"
-        "The image is a low-resolution municipal traffic camera still (352x240). "
-        "Judge only what is genuinely visible; do not speculate. If the frame "
-        "cannot settle the question, say so plainly.\n\n"
+        f"Reported near: {address}\n"
+        f"What to look for: {LOOK_FOR.get(complaint_type, 'the reported condition')}\n\n"
+        "IMPORTANT — how to judge this:\n"
+        "* We have already established this camera is pointed at the reported "
+        "location. Do NOT try to identify the street address, house number, or "
+        "which specific driveway is which. You cannot, and you don't need to.\n"
+        "* Your only job: is the described KIND of condition visible anywhere in "
+        "this view? Answer about the scene as a whole.\n"
+        "* 'visible' means you can see the condition. 'not_visible' means the "
+        "view is clear enough to judge and the condition is not present — that "
+        "is a useful, confident answer, not a failure.\n"
+        "* Reserve 'inconclusive' for when the frame itself defeats you: too "
+        "dark, blocked, blurred, or the relevant area is out of shot. Do not use "
+        "it merely because you cannot pinpoint an address.\n\n"
+        "The image is a 352x240 municipal camera still, often wet or at night. "
+        "Judge what is genuinely there; do not speculate about detail you cannot "
+        "resolve.\n\n"
         "Reply as strict JSON with keys: verdict (one of 'visible', "
         "'not_visible', 'inconclusive'), confidence (0-1), reasoning (<=30 "
         "words), scene (<=20 words describing the frame)."
@@ -262,6 +275,42 @@ VERIFIABLE_TYPES = [
     "Dead/Dying Tree",
     "Overgrown Tree/Branches",
 ]
+
+
+# What the model should actually look for, per type. Without this it tries to
+# read house numbers off a 352x240 frame and returns "inconclusive" every time.
+LOOK_FOR = {
+    "Illegal Parking":
+        "vehicles double-parked, stopped in a travel lane, in a bus lane or "
+        "bike lane, at a hydrant, or on a crosswalk or sidewalk",
+    "Blocked Driveway":
+        "a vehicle stopped across a driveway or curb cut, blocking entry",
+    "Derelict Vehicles":
+        "a vehicle that looks abandoned — damaged, stripped, flat tyres, "
+        "long-term parked",
+    "Abandoned Vehicle":
+        "a vehicle that looks abandoned — damaged, stripped, flat tyres",
+    "Street Condition":
+        "potholes, sunken or broken roadway, standing water, exposed hardware, "
+        "plates or open cuts in the road surface",
+    "Highway Condition":
+        "damaged road surface, debris in lanes, or standing water on the roadway",
+    "Traffic":
+        "congestion — queued or stationary vehicles, blocked intersection, "
+        "gridlock",
+    "Street Light Condition":
+        "street lights that are dark while others nearby are lit, or a leaning "
+        "or damaged light pole",
+    "Traffic Signal Condition":
+        "a traffic signal that is dark, flashing, knocked askew, or bagged",
+    "Damaged Tree":
+        "a broken, split, leaning or fallen tree or large limb",
+    "Dead/Dying Tree":
+        "a bare or dead tree among leafed ones, or an empty tree pit",
+    "Overgrown Tree/Branches":
+        "branches hanging low over the roadway or sidewalk, or obscuring "
+        "signals and signs",
+}
 
 
 def recent_311(limit: int = 25, complaint: Optional[str] = None,
