@@ -1,37 +1,52 @@
-# NYC Vision Agent
+# 👁 Naina
 
 **Cameras that know which way they're looking.**
 
-NYC DOT publishes ~940 live traffic cameras. It does *not* publish which
-direction any of them point. That missing field is the difference between
-finding the camera **nearest** to a problem and finding the camera that can
-**actually see** it — and it's what this project is built on.
+**Live:** https://nyc-vision-agent-978609869472.us-central1.run.app
 
-We recovered headings for 234 of Manhattan's 373 cameras, then used them for
-two things: a live map of where people, bikes and cars are across the whole
-borough, and an agent that checks whether a 311 complaint is still visible on
-the street right now.
+NYC DOT publishes ~940 live traffic cameras. It does **not** publish which
+direction any of them point. That one missing field is the difference between
+finding the camera *nearest* a problem and finding the camera that can
+*actually see* it — and everything here is built on closing that gap.
+
+We recovered headings for **234 of Manhattan's 373 cameras**, then used them
+for two things: a live map of where people and vehicles are across the whole
+borough, and an agent that checks whether a 311 complaint is still true.
 
 ---
 
 ## What it does
 
-**1. Direction-aware 311 verification.** A complaint comes in at a lat/lon. We
-find cameras within range, compute the bearing from each camera to the
-incident, compare it against that camera's known heading, and keep only the
-ones actually pointed at it. Then Gemini looks at the live frame and judges
-whether the reported condition is visible.
+### 1. Direction-aware 311 triage
 
-A camera 40m away pointed the wrong way is useless. A camera 300m away pointed
-straight down the block is not. Proximity alone can't tell those apart.
+NYC takes ~3 million 311 complaints a year. Someone reports *"car blocking my
+driveway"* — and by the time an inspector arrives, hours or days later, the car
+is usually gone. The city spends inspection capacity on complaints that already
+resolved themselves.
 
-**2. Borough-wide activity map.** Every ~90 seconds we sweep all 373 Manhattan
-cameras, count people / bicycles / cars in each frame, and store the sweep.
-The UI plots it live, with per-class toggles and a scrubber to replay the
-evening. Density shifts along a corridor read as movement — but this is
-*correlated density over time*, not individual tracking, and we don't claim
-otherwise. These cameras are 352×240 and seconds apart; re-identifying a person
-across them isn't possible and we didn't pretend it was.
+Naina takes a complaint, computes the bearing from each nearby camera to the
+incident, compares it against that camera's known heading, and keeps only the
+ones actually pointed at it. Then Gemini looks at the live frame and rules.
+
+```
+Blocked Driveway — 158 E 126 St
+  → Lexington Ave @ E 128 St · 173m · facing SW · 35° off-axis · IN VIEW
+  → not_visible (90%)
+    "No vehicles are seen blocking any driveways or curb cuts along the street."
+```
+
+A camera 40m away facing the wrong way is useless. One 300m down the block
+pointed straight at it is not. Proximity alone cannot tell those apart.
+
+### 2. Borough-wide activity timeline
+
+Every 4 minutes we sweep all 373 Manhattan cameras, count people and vehicles
+in each frame, and store the sweep. The UI plots it live with per-class toggles
+and a **Play** control that replays the evening.
+
+This is *correlated density over time*, not individual tracking. These cameras
+are 352×240 and minutes apart; re-identifying a person across them is not
+possible and we don't claim it.
 
 ---
 
@@ -42,110 +57,119 @@ across them isn't possible and we didn't pretend it was.
    (373 Manhattan)    │
                       ▼
              ┌──────────────────┐   counts only    ┌─────────────────────┐
-             │  edge collector  │ ───── POST ────▶ │  Cloud Run service  │
-             │  (local, GPU)    │   /api/ingest    │                     │
-             │  YOLOv8n · ~2s   │                  │  · live map UI      │
+             │  edge collector  │ ───── POST ────▶ │  Cloud Run: Naina   │
+             │  local GPU       │   /api/ingest    │                     │
+             │  YOLOv8m · ~6s   │    (~40KB)       │  · map + timeline   │
              └──────────────────┘                  │  · 311 agent        │
-                      │                            │  · Gemini verify    │
+                      │                            │  · Gemini verdict   │
                       ▼                            └─────────────────────┘
-              frames + sweeps                                │
-              saved to disk                          NYC Open Data 311
+           frames + sweeps to disk                          │
+                                                    NYC Open Data 311
 ```
 
-**Why detection runs at the edge.** An RTX 5070 does all 373 cameras in ~2
-seconds; Cloud Run's CPU needs ~12. Keeping torch out of the container also
-drops the image from ~2.5GB to tens of MB, so cold starts are quick. Only
-counts cross the wire — a few KB per sweep, no imagery.
+**Why detection runs at the edge.** An RTX 5070 does all 373 cameras in ~6
+seconds; Cloud Run's CPU needs ~12 and would need torch in the image (~2.5GB).
+Keeping inference local means the container is tens of MB and cold-starts fast.
+Only counts cross the wire — ~40KB per sweep, no imagery.
 
-**The Cloud Run service is not a thin shell.** It owns the 311 agent, the
-direction geometry, the Gemini verification, and the UI. If the edge collector
-disappears mid-demo, verification keeps working and the map still replays
-everything collected so far.
+**The Cloud Run service is not a thin shell.** It owns the direction geometry,
+the 311 agent, the Gemini verification, and the UI. If the collector stops,
+verification keeps working and the timeline still replays.
+
+**Auth is ADC, not API keys.** The lab project disallows API keys by policy, so
+the container authenticates as its own service account through Vertex AI. There
+is no key in the repo or the deploy.
 
 ---
 
-## Running it
+## Things we got wrong, and how we found out
 
-### Cloud Run
+**The model was counting traffic cones as people.** Pedestrian counts looked
+low, so we lowered the confidence threshold and counts tripled — which we
+initially read as success. Drawing the bounding boxes showed **71% of the new
+"people" were orange traffic cones.** Fixed with per-class thresholds plus an
+aspect-ratio filter: a standing person is taller than wide, a cone isn't.
 
-```bash
-gcloud run deploy nyc-vision-agent \
-  --source . --region us-central1 --allow-unauthenticated \
-  --memory 512Mi --min-instances 1 \
-  --set-env-vars GOOGLE_GENAI_USE_VERTEXAI=true,\
-GOOGLE_CLOUD_PROJECT=YOUR_PROJECT,GOOGLE_CLOUD_LOCATION=us-central1,\
-INGEST_TOKEN=YOUR_TOKEN
-```
+**The counts were internally inconsistent.** We tuned detection three times
+during the evening, so the timeline had step-changes that were tuning
+artefacts, not real activity. Because every frame is written to disk before
+upload, we **reprocessed all 11,439 saved frames** in 124 seconds at a single
+threshold, giving a uniform series end to end.
 
-Auth is Application Default Credentials — the container authenticates as its
-own service account, so there is no API key anywhere in the repo or the
-deploy. (The lab project disallows API keys by org policy, which is the
-better pattern regardless.)
-
-### Edge collector
-
-```bash
-cd collector
-INGEST_URL=https://YOUR-SERVICE.run.app/api/ingest \
-INGEST_TOKEN=YOUR_TOKEN \
-python collect.py
-```
-
-Writes every frame and sweep to `collector/data/` first, then uploads.
-Best-effort: if the network or the service is down, collection continues and
-nothing is lost.
-
----
-
-## Endpoints
-
-| Route | What it gives you |
-|---|---|
-| `GET /` | Live map UI |
-| `GET /healthz` | Sweep count, edge device, camera/heading coverage |
-| `GET /api/cameras` | All 373 cameras with headings |
-| `GET /api/latest` | Most recent sweep |
-| `GET /api/series?camera_id=` | Time series, borough-wide or per camera |
-| `GET /api/311?limit=` | Recent Manhattan complaints, each with cameras that can see it |
-| `POST /api/verify` | Direction-aware camera pick + Gemini verdict |
-| `POST /api/ingest` | Edge collector sweep upload (token-gated) |
-
----
-
-## Where the headings came from
-
-Two methods, in `camera_direction/`:
-
-- **OCR (150 cameras)** — many DOT cameras burn a text banner into the frame
-  naming the location and direction. Read it directly.
-- **DINO embedding match (84 cameras)** — match the live frame against Google
-  Street View panoramas taken at the camera's coordinates at known bearings;
-  the best-matching bearing is the camera's heading. Scores 0.55–0.86.
-
-Spot-checks hold up against ground truth: the data says 1 Ave @ 96 St faces
-**N** and 2 Ave @ 36 St faces **S**, which are the true one-way directions of
-those avenues.
-
-139 Manhattan cameras still have no heading. The API reports `dir: null` for
-them and the 311 agent excludes them from "in view" rather than guessing.
+**Gemini answered "inconclusive" to almost everything.** It was being asked to
+verify a complaint *at a street address*, which no 352×240 frame can resolve.
+Restructured to a two-step judgement — rate whether the frame is usable, then
+rule on the condition — with dark/wet/grainy explicitly flagged as normal
+rather than disqualifying. Measured on 12 live complaints: **7 of 8 retrieved
+frames now reach a verdict at 0.85–0.95 confidence.**
 
 ---
 
 ## Honest limitations
 
-- **No individual tracking.** Density over time, not trajectories. See above.
-- **Counts are YOLOv8n at 352×240.** Reliable for relative change and busy /
-  quiet; not a census. Occlusion and night frames undercount.
-- **Headings are 8-point** (N/NE/E/…), so "in view" is a ±55° cone, not a
-  precise frustum. Good enough to exclude a camera facing the opposite way,
-  not good enough to guarantee a specific storefront is in shot.
-- **311 lag.** Complaints are filed minutes to hours after the fact, so
-  "not visible" often means "already cleared," which is itself useful.
+- **Cars are reliable; people are directional.** At 352×240 a pedestrian
+  mid-block is ~5 pixels. It rained all evening. Treat person counts as
+  relative change, not a census.
+- **No tracking.** Density over time, never trajectories.
+- **Headings are 8-point**, so "in view" is a ±55° cone — enough to exclude a
+  camera facing the wrong way, not enough to guarantee a specific storefront.
+- **139 cameras have no heading.** The API reports `dir: null` and they're
+  excluded from "in view" rather than guessed.
+- **311 publishes with ~43 hours of lag.** The cameras are live; the complaints
+  are recent, not live.
+- **~1 in 3 camera fetches fail.** We try up to four cameras twice each, and it
+  still sometimes returns no frame.
 
 ---
 
+## Where the headings came from
+
+- **OCR (150 cameras)** — many DOT cameras burn a banner into the frame naming
+  the location and direction. Read it directly.
+- **DINO embedding match (84 cameras)** — match the live frame against Street
+  View panoramas at known bearings; best match is the heading. Scores 0.55–0.86.
+
+Spot-checks hold: the data says 1 Ave @ 96 St faces **N** and 2 Ave @ 36 St
+faces **S** — the true one-way directions of those avenues.
+
+---
+
+## Running it
+
+**Cloud Run**
+```bash
+gcloud run deploy nyc-vision-agent --source . --region us-central1 \
+  --allow-unauthenticated --memory 512Mi --min-instances 1 \
+  --set-env-vars GOOGLE_GENAI_USE_VERTEXAI=true,\
+GOOGLE_CLOUD_PROJECT=YOUR_PROJECT,GOOGLE_CLOUD_LOCATION=global,\
+INGEST_TOKEN=YOUR_TOKEN
+```
+
+**Edge collector**
+```bash
+cd collector
+INGEST_URL=https://YOUR-SERVICE.run.app/api/ingest \
+INGEST_TOKEN=YOUR_TOKEN python collect.py
+```
+
+**Reprocess saved frames** (non-destructive; writes its own files)
+```bash
+cd collector && python reprocess.py
+```
+
+## Endpoints
+
+| Route | What it gives you |
+|---|---|
+| `GET /` | map + timeline UI |
+| `GET /api/health` | sweeps, edge device, heading coverage, resolved model |
+| `GET /api/cameras` | 373 cameras with headings |
+| `GET /api/cycles?since=` | sweep history, incremental |
+| `GET /api/311?days=&limit=` | complaints with cameras that can see them |
+| `POST /api/verify` | direction-aware camera pick + Gemini verdict |
+| `POST /api/ingest` | collector upload (token-gated) |
+
 ## Stack
 
-FastAPI on Cloud Run · Gemini 3.5 Flash via Vertex AI + ADC · YOLOv8n
-(ultralytics) at the edge · Leaflet + CARTO dark tiles · NYC Open Data
-(`erm2-nwe9`) · NYCTMC camera API
+FastAPI on Cloud Run · Gemini 3.5 Flash via Vertex AI + ADC · YOLOv8m at the
+edge · Leaflet + CARTO · NYC Open Data (`erm2-nwe9`) · NYCTMC camera API
